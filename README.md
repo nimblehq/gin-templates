@@ -1,6 +1,16 @@
-# Git Repository Template
+<p align="center">
+  <img alt="Nimble logo" src="https://assets.nimblehq.co/logo/light/logo-light-text-320.png" />
+</p>
 
-Project repository template to set up all public projects at [Nimble](https://nimblehq.co/)
+<p align="center">
+  <strong>Gin Templates</strong>
+</p>
+
+---
+
+Our templates offer a rich boilerplate to jump start Go Gin-based application development.
+
+## Get Started
 
 ## Usage
 
@@ -10,7 +20,7 @@ Clone the repository
 
 ## License
 
-This project is Copyright (c) 2014-2020 Nimble. It is free software,
+This project is Copyright (c) 2014 and onwards Nimble. It is free software,
 and may be redistributed under the terms specified in the [LICENSE] file.
 
 [LICENSE]: /LICENSE
