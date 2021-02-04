@@ -20,14 +20,14 @@ Our templates offer a rich boilerplate to jump start Go Gin-based application de
 - Go version >= 1.15
 
 ## Usage
-- Download **latest** version of gin-template.
+- Download **latest** version of gin-templates.
   ```
   go get github.com/nimblehq/gin-templates
   ```
 
 - Run create the project command.
   ```
-  gin-template create
+  gin-templates create
   ```
 
 - Follow the instruction and the app should be created.
