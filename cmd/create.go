@@ -28,7 +28,7 @@ var createCmd = &cobra.Command{
 	Use:   "create",
 	Short: "Create the gin project with your own app name.",
 	Run: func(cmd *cobra.Command, args []string) {
-		shCmd := exec.Command("cookiecutter", "https://github.com/gutakk/gut-cookiecutter")
+		shCmd := exec.Command("cookiecutter", "https://github.com/nimblehq/gin-templates")
 		shCmd.Stdout = os.Stdout
 		shCmd.Stdin = os.Stdin
 
