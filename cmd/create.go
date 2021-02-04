@@ -1,5 +1,5 @@
 /*
-Copyright © 2014-2020 Nimble
+Copyright © 2014-2021 Nimble
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ var createCmd = &cobra.Command{
 
 		err := shCmd.Run()
 		if err != nil {
-			log.Fatal("Create unsuccessfully: ", err)
+			log.Fatal("G: ", err)
 		} else {
 			log.Print("Gin project created successfully.")
 		}
