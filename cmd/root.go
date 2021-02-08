@@ -24,8 +24,8 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:  "gin-templates",
-	Long: "gin-templates is the gin project generator.",
+	Use:  "nimble-gin",
+	Long: "nimble-gin is the gin project generator.",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

@@ -24,9 +24,13 @@ Our templates offer a rich boilerplate to jump start Go Gin-based application de
   ```
   go get github.com/nimblehq/gin-templates
   ```
+- Build the binary file.
+  ```
+  go build -i -o $GOPATH/bin/nimble-gin github.com/nimblehq/gin-templates
+  ```
 - Run create the project command.
   ```
-  gin-templates create
+  nimble-gin create
   ```
 - Follow the instructions in the terminal.
 - Your new application is created 🎉 .
