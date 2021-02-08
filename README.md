@@ -24,13 +24,13 @@ Our templates offer a rich boilerplate to jump start Go Gin-based application de
   ```
   go get github.com/nimblehq/gin-templates
   ```
-
 - Run create the project command.
   ```
   gin-templates create
   ```
+- Follow the instructions in the terminal.
+- Your new application is created 🎉 .
 
-- Follow the instruction and the app should be created.
 ## License
 
 This project is Copyright (c) 2014 and onwards Nimble. It is free software,
