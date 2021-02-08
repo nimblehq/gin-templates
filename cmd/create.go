@@ -34,7 +34,7 @@ var createCmd = &cobra.Command{
 
 		err := shCmd.Run()
 		if err != nil {
-			log.Fatal("G: ", err)
+			log.Fatal("Gin project created unsuccessfully: ", err)
 		} else {
 			log.Print("Gin project created successfully.")
 		}
