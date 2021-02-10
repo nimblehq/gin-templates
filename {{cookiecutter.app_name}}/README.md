@@ -12,7 +12,10 @@
 
 ### Development
 
-*Development instruction goes here ...*
+- Start development server
+```sh
+make dev
+```
 
 ### Test
 
