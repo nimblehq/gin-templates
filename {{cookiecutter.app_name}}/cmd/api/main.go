@@ -3,14 +3,15 @@ package main
 import (
 	"log"
 
-	"github.com/nimblehq/xxx/config"
+	"github.com/nimblehq/xxx/bootstrap"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	app := gin.Default()
-	config.ComebineRouter(app)
+
+	bootstrap.SetupRouter(app)
 
 	err := app.Run()
 	if err != nil {
