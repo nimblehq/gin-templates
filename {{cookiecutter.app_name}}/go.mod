@@ -1,4 +1,4 @@
-module github.com/nimblehq/{{cookiecutter.app_name}}
+module github.com/nimblehq/xxx
 
 go 1.15
 
