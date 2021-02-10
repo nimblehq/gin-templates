@@ -1,11 +1,11 @@
 package bootstrap
 
 import (
-	"github.com/nimblehq/xxx/config"
+	apiv1router "github.com/nimblehq/xxx/lib/api/v1/routers"
 
 	"github.com/gin-gonic/gin"
 )
 
-func SetupRouter(app *gin.Engine) {
-	config.ComebineRouter(app)
+func SetupRouter(engine *gin.Engine) {
+	apiv1router.ComebineRoutes(engine)
 }
