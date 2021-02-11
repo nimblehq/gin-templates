@@ -3,17 +3,13 @@ package main
 import (
 	"log"
 
-	"github.com/nimblehq/{{cookiecutter.app_name}}/bootstrap"
-
-	"github.com/gin-gonic/gin"
+	"github.com/nimblehq/xxxx/bootstrap"
 )
 
 func main() {
-	app := gin.Default()
+	r := bootstrap.SetupRouter()
 
-	bootstrap.SetupRouter(app)
-
-	err := app.Run()
+	err := r.Run()
 	if err != nil {
 		log.Fatal("Failed to start server: ", err)
 	}
