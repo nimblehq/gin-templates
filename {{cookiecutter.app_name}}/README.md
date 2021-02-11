@@ -12,11 +12,17 @@
 
 ### Development
 
-- Start development server
+#### Build dependencies
+This project using [`air`](https://github.com/cosmtrek/air) for live reloading.
+```sh
+make build-dependencies
+```
 
+#### Start development server
 ```sh
 make dev
 ```
+To visit app locally: `localhost:8080`
 
 ### Test
 
