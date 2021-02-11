@@ -29,5 +29,8 @@ make dev
 The application runs locally at http://localhost:8080
 
 ### Test
+Run unit test
 
-*Test instruction goes here ...*
+```sh
+make test
+```
