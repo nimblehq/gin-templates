@@ -5,12 +5,14 @@ import (
 	"net/http"
 	"net/http/httptest"
 
-	. "github.com/onsi/gomega"
+	"github.com/onsi/ginkgo"
 )
 
 func MakeRequest(method string, path string, body io.Reader) *httptest.ResponseRecorder {
 	req, err := http.NewRequest(method, path, body)
-	Expect(err).NotTo(HaveOccurred())
+	if err != nil {
+		ginkgo.Fail("Failed to init request: " + err.Error())
+	}
 
 	resp := httptest.NewRecorder()
 
