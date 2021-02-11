@@ -1,3 +1,5 @@
+// SAFETODELETE: This file is an example API testing and can be deleted.
+
 package controllers_test
 
 import (
