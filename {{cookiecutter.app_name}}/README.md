@@ -30,7 +30,7 @@ The application runs locally at http://localhost:8080
 
 ### Test
 
-Run unit test
+Execute all unit tests:
 
 ```sh
 make test
