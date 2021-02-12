@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/nimblehq/{{cookiecutter.app_name}}/bootstrap"
+	"github.com/nimblehq/xxxx/bootstrap"
 )
 
 func main() {

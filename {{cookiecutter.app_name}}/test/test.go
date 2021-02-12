@@ -1,7 +1,7 @@
 package test
 
 import (
-	"github.com/nimblehq/{{cookiecutter.app_name}}/bootstrap"
+	"github.com/nimblehq/xxxx/bootstrap"
 
 	"github.com/gin-gonic/gin"
 )
