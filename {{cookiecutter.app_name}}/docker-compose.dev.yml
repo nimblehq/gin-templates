@@ -1,0 +1,10 @@
+version: "3.5"
+
+services:
+  db:
+    image: postgres:12.3
+    container_name: xxxx_db
+    environment:
+      - POSTGRES_DB=xxxx_dev
+    ports:
+      - "5432:5432"
