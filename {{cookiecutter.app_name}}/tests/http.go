@@ -1,5 +1,3 @@
-// SAFETODELETE: This file is an example testing helper and can be deleted.
-
 package tests
 
 import (
