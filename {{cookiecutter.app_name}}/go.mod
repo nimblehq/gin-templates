@@ -7,4 +7,5 @@ require (
 	github.com/gin-gonic/gin v1.6.3
 	github.com/onsi/ginkgo v1.15.0
 	github.com/onsi/gomega v1.10.5
+	github.com/spf13/viper v1.7.1 // indirect
 )
