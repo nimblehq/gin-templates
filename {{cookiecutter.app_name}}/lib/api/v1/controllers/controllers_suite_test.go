@@ -3,7 +3,7 @@ package controllers_test
 import (
 	"testing"
 
-	"github.com/nimblehq/{{cookiecutter.app_name}}/tests"
+	"github.com/nimblehq/{{cookiecutter.app_name}}/test"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -15,5 +15,5 @@ func TestControllers(t *testing.T) {
 }
 
 var _ = BeforeSuite(func() {
-	tests.SetupTestEnvironment()
+	test.SetupTestEnvironment()
 })

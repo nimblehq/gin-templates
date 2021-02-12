@@ -1,4 +1,4 @@
-package tests
+package test
 
 import (
 	"github.com/nimblehq/{{cookiecutter.app_name}}/bootstrap"

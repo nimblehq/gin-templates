@@ -1,4 +1,4 @@
-package router
+package routers
 
 import (
 	"github.com/nimblehq/{{cookiecutter.app_name}}/lib/api/v1/controllers"
