@@ -13,7 +13,8 @@
 ### Development
 
 #### Build dependencies
-This project using [`air`](https://github.com/cosmtrek/air) for live reloading. It need to be built as a binary file in `$GOPATH`.
+[`air`](https://github.com/cosmtrek/air) is used for live reloading. It needs to be built as a binary file in `$GOPATH`.
+
 
 ```sh
 make build-dependencies
@@ -25,7 +26,7 @@ make build-dependencies
 make dev
 ```
 
-To visit app locally: `localhost:8080`
+The application runs locally at http://localhost:8080
 
 ### Test
 
