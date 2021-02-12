@@ -17,7 +17,7 @@
 
 
 ```sh
-make build-dependencies
+make install-dependencies
 ```
 
 #### Start development server
