@@ -1,3 +1,5 @@
 [debug]
 database_url = "postgres://postgres:postgres@0.0.0.0:5432/xxxx_dev?sslmode=disable"
 
+[test]
+database_url = "postgres://postgres:postgres@0.0.0.0:5433/xxxx_test?sslmode=disable"
