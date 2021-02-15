@@ -3,7 +3,7 @@ package helpers_test
 import (
 	"errors"
 
-	"github.com/nimblehq/xxxx/helpers"
+	"github.com/nimblehq/{{cookiecutter.app_name}}/helpers"
 	. "github.com/onsi/ginkgo"
 
 	. "github.com/onsi/gomega"

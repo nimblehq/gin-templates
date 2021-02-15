@@ -3,9 +3,9 @@ version: "3.5"
 services:
   db_test:
     image: postgres:12.3
-    container_name: xxxx_db_test
+    container_name: {{cookiecutter.app_name}}_db_test
     environment:
-      - POSTGRES_DB=xxxx_test
+      - POSTGRES_DB={{cookiecutter.app_name}}_test
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - "5433:5432"

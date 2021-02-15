@@ -3,7 +3,7 @@ package bootstrap
 import (
 	"log"
 
-	"github.com/nimblehq/xxxx/helpers"
+	"github.com/nimblehq/{{cookiecutter.app_name}}/helpers"
 
 	"github.com/spf13/viper"
 	"gorm.io/driver/postgres"

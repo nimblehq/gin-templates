@@ -1,7 +1,7 @@
 package helpers_test
 
 import (
-	"github.com/nimblehq/xxxx/helpers"
+	"github.com/nimblehq/{{cookiecutter.app_name}}/helpers"
 	"github.com/spf13/viper"
 
 	"github.com/gin-gonic/gin"
