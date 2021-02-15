@@ -16,7 +16,7 @@ import (
 func InitDatabase() {
 	db, err := gorm.Open(postgres.Open(helpers.GetStringConfig("database_url")), &gorm.Config{})
 	if err != nil {
-		log.Fatal("Failed to connect to database: ", err)
+		log.Fatalf("Failed to connect to %v database: %v", gin.Mode(), err)
 	} else {
 		viper.Set("database", db)
 		log.Println(strings.Title(gin.Mode()) + " database connected successfully.")
