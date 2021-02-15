@@ -1,4 +1,10 @@
-.PHONY: dev install-dependencies test
+.PHONY: env-setup env-teardown dev install-dependencies test
+
+env-setup:
+	docker-compose -f docker-compose.dev.yml up -d
+
+env-teardown:
+	docker-compose -f docker-compose.dev.yml down
 
 dev:
 	air -c cmd/api/.air.toml
