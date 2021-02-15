@@ -7,6 +7,8 @@ import (
 )
 
 func main() {
+	bootstrap.LoadConfig()
+
 	r := bootstrap.SetupRouter()
 
 	err := r.Run()
