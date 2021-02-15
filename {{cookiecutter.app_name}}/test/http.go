@@ -1,11 +1,9 @@
-package supports
+package test
 
 import (
 	"io"
 	"net/http"
 	"net/http/httptest"
-
-	"github.com/nimblehq/{{cookiecutter.app_name}}/test"
 
 	"github.com/onsi/ginkgo"
 )
@@ -18,7 +16,7 @@ func MakeRequest(method string, path string, body io.Reader) *httptest.ResponseR
 
 	resp := httptest.NewRecorder()
 
-	test.Router.ServeHTTP(resp, req)
+	Router.ServeHTTP(resp, req)
 
 	return resp
 }
