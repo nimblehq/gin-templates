@@ -1,9 +1,10 @@
 package helpers_test
 
 import (
-	"github.com/gin-gonic/gin"
 	"github.com/nimblehq/xxxx/helpers"
+	"github.com/spf13/viper"
 
+	"github.com/gin-gonic/gin"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
@@ -44,19 +45,88 @@ var _ = Describe("Config", func() {
 		})
 	})
 
-	// SetupTestEnvironment loaded the config already.
-	Describe("#ReadConfig", func() {
+	Describe("#GetBoolConfig", func() {
+		Context("given EXISTING config key", func() {
+			It("returns true", func() {
+				viper.Set("test.bool_config", true)
+
+				result := helpers.GetBoolConfig("bool_config")
+
+				Expect(result).To(BeTrue())
+			})
+		})
+
+		Context("given NON-EXISTING config key", func() {
+			It("returns false", func() {
+				viper.Set("test.bool_config", true)
+
+				result := helpers.GetBoolConfig("invalid")
+
+				Expect(result).To(BeFalse())
+			})
+		})
+	})
+
+	Describe("#GetFloatConfig", func() {
 		Context("given EXISTING config key", func() {
 			It("returns correct config value", func() {
-				result := helpers.ReadConfig("database_url")
+				viper.Set("test.float_config", 1.0)
 
-				Expect(result).To(Equal("postgres://postgres:postgres@0.0.0.0:5433/xxxx_test?sslmode=disable"))
+				result := helpers.GetFloatConfig("float_config")
+
+				Expect(result).To(Equal(1.0))
+			})
+		})
+
+		Context("given NON-EXISTING config key", func() {
+			It("returns zero", func() {
+				viper.Set("test.float_config", 1.0)
+
+				result := helpers.GetFloatConfig("invalid")
+
+				Expect(result).To(BeZero())
+			})
+		})
+	})
+
+	Describe("#GetIntConfig", func() {
+		Context("given EXISTING config key", func() {
+			It("returns correct config value", func() {
+				viper.Set("test.int_config", 1)
+
+				result := helpers.GetIntConfig("int_config")
+
+				Expect(result).To(Equal(1))
+			})
+		})
+
+		Context("given NON-EXISTING config key", func() {
+			It("returns zero", func() {
+				viper.Set("test.int_config", 1)
+
+				result := helpers.GetIntConfig("invalid")
+
+				Expect(result).To(BeZero())
+			})
+		})
+	})
+
+	Describe("#GetStringConfig", func() {
+		Context("given EXISTING config key", func() {
+			It("returns correct config value", func() {
+				viper.Set("test.string_config", "some string")
+
+				result := helpers.GetStringConfig("string_config")
+
+				Expect(result).To(Equal("some string"))
 			})
 		})
 
 		Context("given NON-EXISTING config key", func() {
 			It("returns empty config value", func() {
-				result := helpers.ReadConfig("invalid")
+				viper.Set("test.string_config", "some string")
+
+				result := helpers.GetStringConfig("invalid")
 
 				Expect(result).To(BeEmpty())
 			})
