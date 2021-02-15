@@ -2,9 +2,11 @@ package bootstrap
 
 import (
 	"log"
+	"strings"
 
 	"github.com/nimblehq/{{cookiecutter.app_name}}/helpers"
 
+	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -17,6 +19,6 @@ func InitDatabase() {
 		log.Fatal("Failed to connect to database: ", err)
 	} else {
 		viper.Set("database", db)
-		log.Println("Database connected successfully.")
+		log.Println(strings.Title(gin.Mode()) + " database connected successfully.")
 	}
 }
