@@ -9,6 +9,8 @@ import (
 func main() {
 	bootstrap.LoadConfig()
 
+	bootstrap.InitDatabase()
+
 	r := bootstrap.SetupRouter()
 
 	err := r.Run()
