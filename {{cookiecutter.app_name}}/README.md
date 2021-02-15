@@ -12,11 +12,21 @@
 
 ### Development
 
-- Start development server
+#### Build dependencies
+[`air`](https://github.com/cosmtrek/air) is used for live reloading. It needs to be built as a binary file in `$GOPATH`.
+
+
+```sh
+make install-dependencies
+```
+
+#### Start development server
 
 ```sh
 make dev
 ```
+
+The application runs locally at http://localhost:8080
 
 ### Test
 
