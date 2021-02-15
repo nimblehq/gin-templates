@@ -6,7 +6,7 @@ env-setup:
 env-teardown:
 	docker-compose -f docker-compose.dev.yml down
 
-dev:
+dev: env-setup
 	air -c cmd/api/.air.toml
 
 install-dependencies:
