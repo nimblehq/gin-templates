@@ -1,4 +1,3 @@
-// SAFETODELETE: This file is an example API and can be deleted.
 package controllers
 
 import (

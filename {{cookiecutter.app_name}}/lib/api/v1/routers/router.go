@@ -9,6 +9,5 @@ import (
 func ComebineRoutes(engine *gin.Engine) {
 	v1 := engine.Group("/api/v1")
 
-	// SAFETODELETE: This is an example API router and can be deleted.
 	v1.GET("/health", controllers.HealthController{}.HealthStatus)
 }
