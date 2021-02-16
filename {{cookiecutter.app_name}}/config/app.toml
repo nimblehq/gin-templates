@@ -1,5 +1,5 @@
 [debug]
-database_url = "postgres://postgres:postgres@0.0.0.0:5432/{{cookiecutter.app_name}}_dev?sslmode=disable"
+database_url = "postgres://postgres:postgres@0.0.0.0:5432/{{cookiecutter.app_name}}_development?sslmode=disable"
 
 [test]
 database_url = "postgres://postgres:postgres@0.0.0.0:5433/{{cookiecutter.app_name}}_test?sslmode=disable"
