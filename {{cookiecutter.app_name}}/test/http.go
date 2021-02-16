@@ -11,7 +11,7 @@ import (
 func MakeRequest(method string, path string, body io.Reader) *httptest.ResponseRecorder {
 	req, err := http.NewRequest(method, path, body)
 	if err != nil {
-		ginkgo.Fail("Failed to init request: " + err.Error())
+		ginkgo.Fail("Failed to make a request: " + err.Error())
 	}
 
 	resp := httptest.NewRecorder()
