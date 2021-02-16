@@ -12,7 +12,6 @@ import (
 	"gorm.io/gorm"
 )
 
-// Init database and set to viper config
 func InitDatabase() {
 	db, err := gorm.Open(postgres.Open(helpers.GetStringConfig("database_url")), &gorm.Config{})
 	if err != nil {
