@@ -1,5 +1,14 @@
+app_name = "{{cookiecutter.app_name}}"
+app_port = "8080"
+db_host = "0.0.0.0"
+db_password = "postgres"
+db_username = "postgres"
+
+
 [debug]
-database_url = "postgres://postgres:postgres@0.0.0.0:5432/{{cookiecutter.app_name}}_development?sslmode=disable"
+db_name = "{{cookiecutter.app_name}}_development"
+db_port = "5432"
 
 [test]
-database_url = "postgres://postgres:postgres@0.0.0.0:5433/{{cookiecutter.app_name}}_test?sslmode=disable"
+db_name = "{{cookiecutter.app_name}}_test"
+db_port = "5433"
