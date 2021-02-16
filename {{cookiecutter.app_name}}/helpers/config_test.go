@@ -2,11 +2,11 @@ package helpers_test
 
 import (
 	"github.com/nimblehq/{{cookiecutter.app_name}}/helpers"
-	"github.com/spf13/viper"
 
 	"github.com/gin-gonic/gin"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"github.com/spf13/viper"
 )
 
 var _ = Describe("Config", func() {
