@@ -6,6 +6,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupRouter(engine *gin.Engine) {
-	apiv1router.ComebineRoutes(engine)
+func SetupRouter() *gin.Engine {
+	r := gin.Default()
+
+	apiv1router.ComebineRoutes(r)
+
+	return r
 }
