@@ -17,7 +17,7 @@ Our templates offer a rich boilerplate to jump start Go Gin-based application de
 - [Python interpreter](https://docs.python.org/3/using/index.html)
 - Cookiecutter
   - Mac: `brew install cookiecutter`
-  - Ubuntu: `brew install cookiecutter`
+  - Debian/Ubuntu: `sudo apt-get install cookiecutter`
 - Go version >= 1.15
 
 ## Usage
