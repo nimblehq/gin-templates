@@ -35,6 +35,14 @@ Our templates offer a rich boilerplate to jump start Go Gin-based application de
 - Follow the instructions in the terminal.
 - Your new application is created 🎉 .
 
+## Test
+
+Execute all unit tests:
+
+```sh
+make test
+```
+
 ## License
 
 This project is Copyright (c) 2014 and onwards Nimble. It is free software,
