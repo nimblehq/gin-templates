@@ -13,7 +13,7 @@ var TemplateGeneratedPath string
 
 func TestTemplate(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Controllers Suite")
+	RunSpecs(t, "Template Suite")
 }
 
 var _ = BeforeSuite(func() {
