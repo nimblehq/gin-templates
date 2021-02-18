@@ -1,4 +1,4 @@
-package tests_test
+package template_test
 
 import (
 	"log"
@@ -32,7 +32,7 @@ var _ = BeforeSuite(func() {
 
 	stdin := r
 
-	shCmd := exec.Command("cookiecutter", "..")
+	shCmd := exec.Command("cookiecutter", "../..")
 	shCmd.Stdout = os.Stdout
 	shCmd.Stdin = stdin
 

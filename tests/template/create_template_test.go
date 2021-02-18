@@ -1,4 +1,4 @@
-package tests_test
+package template_test
 
 import (
 	"os"
@@ -22,7 +22,7 @@ var _ = Describe("Create", func() {
 				Fail("Failed to get current directory: " + err.Error())
 			}
 
-			isContainProjectName := strings.Contains(dir, "gin-templates/tests/test-gin-templates")
+			isContainProjectName := strings.Contains(dir, "gin-templates/tests/template/test-gin-templates")
 
 			Expect(isContainProjectName).To(BeTrue())
 		})
