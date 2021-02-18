@@ -1,16 +1,15 @@
 package template_test
 
 import (
-	"log"
 	"os"
-	"os/exec"
 	"testing"
 
+	"github.com/nimblehq/gin-templates/tests"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
 
-var ProjectGeneratedPath string
+var TemplateGeneratedPath string
 
 func TestTemplate(t *testing.T) {
 	RegisterFailHandler(Fail)
@@ -18,40 +17,9 @@ func TestTemplate(t *testing.T) {
 }
 
 var _ = BeforeSuite(func() {
-	input := []byte("test-gin-templates")
-	r, w, err := os.Pipe()
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	_, err = w.Write(input)
-	if err != nil {
-		log.Fatal(err)
-	}
-	w.Close()
-
-	stdin := r
-
-	shCmd := exec.Command("cookiecutter", "../..")
-	shCmd.Stdout = os.Stdout
-	shCmd.Stdin = stdin
-
-	err = shCmd.Run()
-
-	if err != nil {
-		log.Fatal("Gin project created unsuccessfully: ", err.Error())
-	} else {
-		log.Print("Gin project created successfully.")
-	}
-
-	currentPath, err := os.Getwd()
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	ProjectGeneratedPath = currentPath
+	TemplateGeneratedPath = tests.CreateTemplate()
 })
 
 var _ = AfterSuite(func() {
-	os.RemoveAll(ProjectGeneratedPath + "/test-gin-templates")
+	os.RemoveAll(TemplateGeneratedPath + "/test-gin-templates")
 })

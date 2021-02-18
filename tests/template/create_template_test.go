@@ -11,10 +11,10 @@ import (
 )
 
 var _ = BeforeEach(func() {
-	tests.ChangeDirectory(ProjectGeneratedPath + "/test-gin-templates")
+	tests.ChangeDirectory(TemplateGeneratedPath + "/test-gin-templates")
 })
 
-var _ = Describe("Create", func() {
+var _ = Describe("Create template", func() {
 	Context("given current directory", func() {
 		It("contains project name", func() {
 			dir, err := os.Getwd()
