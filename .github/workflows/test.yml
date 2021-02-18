@@ -17,5 +17,10 @@ jobs:
         with:
           go-version: 1.15.x
 
+      - name: Linters
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.29
+
       - name: Test
         run: make test
