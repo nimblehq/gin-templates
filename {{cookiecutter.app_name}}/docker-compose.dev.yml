@@ -1,0 +1,11 @@
+version: "3.5"
+
+services:
+  db:
+    image: postgres:12.3
+    container_name: {{cookiecutter.app_name}}_db
+    environment:
+      - POSTGRES_DB={{cookiecutter.app_name}}_development
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5432:5432"
