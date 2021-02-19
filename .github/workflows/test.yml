@@ -23,4 +23,4 @@ jobs:
           version: v1.29
 
       - name: Test
-        run: make test
+        run: BRANCH=develop make test
