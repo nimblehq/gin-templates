@@ -17,10 +17,10 @@ jobs:
         with:
           go-version: 1.16.x
 
-      # - name: Linters
-      #   uses: golangci/golangci-lint-action@v2
-      #   with:
-      #     version: v1.29
+      - name: Linters
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.29
 
       - name: Debug
         run: |
@@ -29,6 +29,5 @@ jobs:
       - name: Test
         env:
           GOPATH: /home/runner/go
-          GO111MODULE: auto
         run: BRANCH=develop make test
 
