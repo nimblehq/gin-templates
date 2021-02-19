@@ -22,15 +22,11 @@ jobs:
         with:
           version: v1.29
 
-      - name: Branch name
+      - name: Get branch name
         uses: nelonoel/branch-name@v1.0.1
-
-      - name: Debug
-        run: |
-          echo ${BRANCH_NAME}
 
       - name: Test
         env:
           GOPATH: /home/runner/go
-        run: BRANCH=develop make test
+        run: BRANCH=${BRANCH_NAME} make test
 
