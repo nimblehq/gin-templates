@@ -22,6 +22,9 @@ jobs:
       #   with:
       #     version: v1.29
 
+      - name: Debug
+        run: |
+          echo ${PATH}
 
       - name: Test
         env:
@@ -29,6 +32,3 @@ jobs:
           GO111MODULE: auto
         run: BRANCH=develop make test
 
-      - name: Debug
-        run: |
-          ls /home/runner/work/gin-templates/gin-templates/go
