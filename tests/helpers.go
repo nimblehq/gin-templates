@@ -21,12 +21,12 @@ func CreateTemplate() string {
 
 	reader, writer, err := os.Pipe()
 	if err != nil {
-		Fail("Failed to connected pair of files: " + err.Error())
+		Fail("Failed to create file to store stdin value: " + err.Error())
 	}
 
 	_, err = writer.Write(input)
 	if err != nil {
-		Fail("Failed to write file: " + err.Error())
+		Fail("Failed to write stdin value to file: " + err.Error())
 	}
 	writer.Close()
 
