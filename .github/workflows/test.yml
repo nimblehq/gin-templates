@@ -22,12 +22,13 @@ jobs:
       #   with:
       #     version: v1.29
 
-      - name: Debug
-        run: |
-          pwd
 
       - name: Test
         env:
           GOPATH: /home/runner/work/gin-templates/gin-templates/go
           GO111MODULE: auto
         run: BRANCH=develop make test
+
+      - name: Debug
+        run: |
+          ls /home/runner/work/gin-templates/gin-templates/go
