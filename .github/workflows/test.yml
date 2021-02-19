@@ -9,8 +9,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
 
-      # - name: Install cookiecutter
-      #   run: sudo apt-get install cookiecutter
+      - name: Install cookiecutter
+        run: sudo apt-get install cookiecutter
 
       - name: Setup Go environment
         uses: actions/setup-go@v2.1.3
@@ -26,5 +26,7 @@ jobs:
         run: |
           pwd
 
-      # - name: Test
-      #   run: BRANCH=develop make test
+      - name: Test
+        env:
+          GOPATH: /home/runner/work/gin-templates/gin-templates/go
+        run: BRANCH=develop make test
