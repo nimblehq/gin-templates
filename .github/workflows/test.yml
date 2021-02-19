@@ -22,9 +22,13 @@ jobs:
         with:
           version: v1.29
 
+      - name: Branch name
+        run: npm ci
+        uses: nelonoel/branch-name@v1.0.1
+
       - name: Debug
         run: |
-          echo ${{ github.head_ref }}
+          echo ${BRANCH_NAME}
 
       - name: Test
         env:
