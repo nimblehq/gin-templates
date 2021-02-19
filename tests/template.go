@@ -20,6 +20,7 @@ func DownloadGinTemplate() {
 }
 
 func BuildGinTemplate() {
+	log.Printf("======================= %v", os.Getenv("GOPATH"))
 	shCmd := exec.Command("go", "build", "-o", os.Getenv("GOPATH")+"/bin/nimble-gin", "github.com/nimblehq/gin-templates")
 	shCmd.Stdout = os.Stdout
 	err := shCmd.Run()
