@@ -24,7 +24,7 @@ jobs:
 
       - name: Debug
         run: |
-          echo ${PATH}
+          echo ${{ github.head_ref }}
 
       - name: Test
         env:
