@@ -29,4 +29,5 @@ jobs:
       - name: Test
         env:
           GOPATH: /home/runner/work/gin-templates/gin-templates/go
+          GO111MODULE: auto
         run: BRANCH=develop make test
