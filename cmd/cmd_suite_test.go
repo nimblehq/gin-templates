@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/nimblehq/gin-templates/tests"
+
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
