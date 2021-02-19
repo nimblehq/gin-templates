@@ -1,4 +1,4 @@
-package template_test
+package cmd_test
 
 import (
 	"os"
@@ -22,7 +22,7 @@ var _ = Describe("Create template", func() {
 				Fail("Failed to get current directory: " + err.Error())
 			}
 
-			directoryContinProjectName := strings.Contains(dir, "gin-templates/tests/template/test-gin-templates")
+			directoryContinProjectName := strings.Contains(dir, "gin-templates/cmd/test-gin-templates")
 
 			Expect(directoryContinProjectName).To(BeTrue())
 		})
