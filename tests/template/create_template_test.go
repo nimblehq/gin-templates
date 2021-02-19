@@ -15,7 +15,7 @@ var _ = BeforeEach(func() {
 })
 
 var _ = Describe("Create template", func() {
-	Context("given current directory", func() {
+	Context("given the project directory", func() {
 		It("contains project name", func() {
 			dir, err := os.Getwd()
 			if err != nil {
