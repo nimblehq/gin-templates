@@ -17,7 +17,10 @@ func TestTemplate(t *testing.T) {
 }
 
 var _ = BeforeSuite(func() {
-	TemplateGeneratedPath = tests.CreateTemplate()
+	tests.DownloadGinTemplate()
+	tests.BuildGinTemplate()
+	tests.RemoveCookiecuttersCache()
+	TemplateGeneratedPath = tests.CreateProjectFromGinTemplate()
 })
 
 var _ = AfterSuite(func() {

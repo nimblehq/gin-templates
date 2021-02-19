@@ -24,23 +24,28 @@ import (
 )
 
 // createCmd represents the create command
-var createCmd = &cobra.Command{
-	Use:   "create",
-	Short: "Create the gin project with your own app name.",
-	Run: func(cmd *cobra.Command, args []string) {
-		shCmd := exec.Command("cookiecutter", "https://github.com/nimblehq/gin-templates")
-		shCmd.Stdout = os.Stdout
-		shCmd.Stdin = os.Stdin
+var (
+	branchFlag string
 
-		err := shCmd.Run()
-		if err != nil {
-			log.Fatal("Gin project created unsuccessfully: ", err)
-		} else {
-			log.Print("Gin project created successfully.")
-		}
-	},
-}
+	createCmd = &cobra.Command{
+		Use:   "create",
+		Short: "Create the gin project with your own app name.",
+		Run: func(cmd *cobra.Command, args []string) {
+			shCmd := exec.Command("cookiecutter", "https://github.com/nimblehq/gin-templates.git", "--checkout", branchFlag)
+			shCmd.Stdout = os.Stdout
+			shCmd.Stdin = os.Stdin
+
+			err := shCmd.Run()
+			if err != nil {
+				log.Fatal("Gin project created unsuccessfully: ", err)
+			} else {
+				log.Print("Gin project created successfully.")
+			}
+		},
+	}
+)
 
 func init() {
+	createCmd.PersistentFlags().StringVarP(&branchFlag, "branch", "b", "main", "template branch")
 	rootCmd.AddCommand(createCmd)
 }

@@ -40,8 +40,10 @@ Our templates offer a rich boilerplate to jump start Go Gin-based application de
 Execute all unit tests:
 
 ```sh
-make test
+BRANCH={{git branch}} make test
 ```
+
+Test command will use the template from specifying `BRANCH` to create the temporary testing project.
 
 ## License
 
