@@ -28,11 +28,10 @@ Our templates offer a rich boilerplate to jump start Go Gin-based application de
   ```
   go build -o $GOPATH/bin/nimble-gin github.com/nimblehq/gin-templates
   ```
-- Create the project from a template on a specifying branch.
+- Create the project from a template on a **main** branch.
   ```
-  nimble-gin -b {{git branch}} create
+  nimble-gin create
   ```
-  **Note:** `-b` can be omitted, branch will be `main` by default.
 - Follow the instructions in the terminal.
 - Your new application is created 🎉 .
 
@@ -41,10 +40,8 @@ Our templates offer a rich boilerplate to jump start Go Gin-based application de
 Execute all unit tests:
 
 ```sh
-BRANCH={{git branch}} make test
+make test
 ```
-
-Test command will use the template from specifying `BRANCH` to create the temporary testing project (default: `main`).
 
 ## License
 
