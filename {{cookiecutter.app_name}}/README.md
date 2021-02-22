@@ -8,7 +8,7 @@
 
 ### Prerequisites
 
-- [Go - 1.15](https://golang.org/doc/go1.15) or newer
+- [Go - 1.16](https://golang.org/doc/go1.16) or newer
 
 ### Development
 

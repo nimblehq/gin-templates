@@ -18,7 +18,7 @@ Our templates offer a rich boilerplate to jump start Go Gin-based application de
 - Cookiecutter
   - Mac: `brew install cookiecutter`
   - Debian/Ubuntu: `sudo apt-get install cookiecutter`
-- Go version >= 1.15
+- Go version >= 1.16
 
 ## Usage
 
