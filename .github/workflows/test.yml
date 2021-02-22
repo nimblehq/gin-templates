@@ -28,5 +28,5 @@ jobs:
       - name: Test
         env:
           GOPATH: /home/runner/go
-        run: BRANCH=${BRANCH_NAME} make test
+        run: BRANCH=$BRANCH_NAME make test
 
