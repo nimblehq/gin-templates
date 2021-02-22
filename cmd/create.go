@@ -23,7 +23,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// createCmd represents the create command
+// createCmd generates the project using cookiecutter
 var (
 	branchFlag string
 
