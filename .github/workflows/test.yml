@@ -9,6 +9,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
 
+      - name: GITHUB REF
+        run: |
+          echo ${GITHUB_REF#refs/heads/}
+
       - name: Install cookiecutter
         run: sudo apt-get install cookiecutter
 
