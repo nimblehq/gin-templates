@@ -11,6 +11,7 @@ dev: env-setup
 
 install-dependencies:
 	go get github.com/cosmtrek/air@v1.15.1
+	go get github.com/pressly/goose/cmd/goose
 	go mod tidy
 
 test:
