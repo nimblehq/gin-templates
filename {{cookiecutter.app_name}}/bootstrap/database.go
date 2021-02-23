@@ -5,7 +5,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/nimblehq/{{cookiecutter.app_name}}/helpers"
+	"github.com/nimblehq/xxxx/helpers"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"

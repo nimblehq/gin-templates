@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"github.com/nimblehq/{{cookiecutter.app_name}}/lib/api/v1/controllers"
+	"github.com/nimblehq/xxxx/lib/api/v1/controllers"
 
 	"github.com/gin-gonic/gin"
 )
