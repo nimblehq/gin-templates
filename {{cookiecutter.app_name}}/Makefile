@@ -7,7 +7,6 @@ env-teardown:
 	docker-compose -f docker-compose.dev.yml down
 
 db/migrate:
-	make check-env
 	goose -dir database/migrations -table "migration_versions" postgres "postgres://postgres:postgres@0.0.0.0:${DB_PORT}/test-gin-template_${ENV}?sslmode=disable" up
 
 db/rollback:
