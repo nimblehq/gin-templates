@@ -32,7 +32,7 @@ Our templates offer a rich boilerplate to jump start Go Gin-based application de
   go build -o $GOPATH/bin/nimble-gin github.com/nimblehq/gin-templates
   ```
 
-- Create the project from a template on a **main** branch.
+- Create the project using gin-templates. Note that the **main** branch is used.
   ```
   nimble-gin create
   ```
