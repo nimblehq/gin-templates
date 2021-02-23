@@ -12,7 +12,8 @@ Our templates offer a rich boilerplate to jump start Go Gin-based application de
 
 ## Get Started
 
-### Prerequisite 
+### Prerequisite
+
 - [Python interpreter](https://docs.python.org/3/using/index.html)
 - Cookiecutter
   - Mac: `brew install cookiecutter`
@@ -20,20 +21,33 @@ Our templates offer a rich boilerplate to jump start Go Gin-based application de
 - Go version >= 1.15
 
 ## Usage
+
 - Download **latest** version of gin-templates.
   ```
   go get github.com/nimblehq/gin-templates
   ```
+
 - Build the binary file.
   ```
-  go build -i -o $GOPATH/bin/nimble-gin github.com/nimblehq/gin-templates
+  go build -o $GOPATH/bin/nimble-gin github.com/nimblehq/gin-templates
   ```
-- Run create the project command.
+
+- Create the project using gin-templates. Note that the **main** branch is used.
   ```
   nimble-gin create
   ```
+
 - Follow the instructions in the terminal.
+
 - Your new application is created 🎉 .
+
+## Test
+
+Execute all unit tests:
+
+```sh
+make test
+```
 
 ## License
 
