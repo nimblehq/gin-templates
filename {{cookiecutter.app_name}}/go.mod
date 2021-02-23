@@ -1,6 +1,6 @@
 module github.com/nimblehq/{{cookiecutter.app_name}}
 
-go 1.15
+go 1.16
 
 require (
 	github.com/cosmtrek/air v1.15.1 // indirect
