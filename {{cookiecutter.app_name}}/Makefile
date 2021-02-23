@@ -6,6 +6,21 @@ env-setup:
 env-teardown:
 	docker-compose -f docker-compose.dev.yml down
 
+db/migrate:
+	goose -dir database/migrations -table "migration_versions" postgres "user=postgres dbname=xxxx_development sslmode=disable" up
+
+db/rollback:
+	goose -dir database/migrations -table "migration_versions" postgres "user=postgres dbname=xxxx_development sslmode=disable" down
+
+migration/create:
+ifndef MIGRATION_NAME
+	$(error MIGRATION_NAME is required)
+endif
+	goose -dir database/migrations create ${MIGRATION_NAME} sql
+
+migration/status:
+	goose -dir database/migrations -table "migration_versions" postgres "user=postgres dbname=xxxx_development sslmode=disable" status
+
 dev: env-setup
 	air -c cmd/api/.air.toml
 
