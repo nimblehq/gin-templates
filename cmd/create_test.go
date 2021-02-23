@@ -22,9 +22,9 @@ var _ = Describe("Create template", func() {
 				Fail("Failed to get current directory: " + err.Error())
 			}
 
-			directoryContinProjectName := strings.Contains(dir, "gin-templates/cmd/test-gin-templates")
+			directoryContainProjectName := strings.Contains(dir, "gin-templates/cmd/test-gin-templates")
 
-			Expect(directoryContinProjectName).To(BeTrue())
+			Expect(directoryContainProjectName).To(BeTrue())
 		})
 	})
 
