@@ -3,7 +3,7 @@ ifdef ENV
 include .env.$(ENV)
 endif
 
-.PHONY: env-setup env-teardown db/migrate db/rollback migratoin/create migration/status dev install-dependencies test
+.PHONY: env-setup env-teardown db/migrate db/rollback migratoin/create migration/status dev install-dependencies test wait-for-postgres
 
 env-setup:
 	docker-compose -f docker-compose.dev.yml up -d
@@ -42,3 +42,6 @@ test:
 	ENV=test make db/migrate
 	BRANCH=$(BRANCH) go test -v -p 1 -count=1 ./...
 	docker-compose -f docker-compose.test.yml down
+
+wait-for-postgres:
+	$(shell DATABASE_URL=$(DATABASE_URL) ./bin/wait-for-postgres.sh)
