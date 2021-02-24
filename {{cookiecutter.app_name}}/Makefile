@@ -1,3 +1,4 @@
+include .env
 ifdef ENV
 include .env.$(ENV)
 endif
@@ -28,7 +29,7 @@ migration/status:
 
 dev: 
 	make env-setup
-	ENV=development make db/migrate
+	make db/migrate
 	air -c cmd/api/.air.toml
 
 install-dependencies:
