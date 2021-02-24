@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/nimblehq/test-gin-template/bootstrap"
+	"github.com/nimblehq/{{cookiecutter.app_name}}/bootstrap"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"

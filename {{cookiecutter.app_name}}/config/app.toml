@@ -1,4 +1,4 @@
-app_name = "test-gin-template"
+app_name = "{{cookiecutter.app_name}}"
 app_port = "8080"
 db_host = "0.0.0.0"
 db_password = "postgres"
@@ -6,9 +6,9 @@ db_username = "postgres"
 
 
 [debug]
-db_name = "test-gin-template_development"
+db_name = "{{cookiecutter.app_name}}_development"
 db_port = "5432"
 
 [test]
-db_name = "test-gin-template_test"
+db_name = "{{cookiecutter.app_name}}_test"
 db_port = "5433"

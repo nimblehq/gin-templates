@@ -1,4 +1,4 @@
-module github.com/nimblehq/test-gin-template
+module github.com/nimblehq/{{cookiecutter.app_name}}
 
 go 1.16
 

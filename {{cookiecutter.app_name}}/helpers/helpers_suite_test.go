@@ -3,7 +3,7 @@ package helpers_test
 import (
 	"testing"
 
-	"github.com/nimblehq/test-gin-template/test"
+	"github.com/nimblehq/{{cookiecutter.app_name}}/test"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
