@@ -1,3 +1,7 @@
+ifdef ENV
+include .env.$(ENV)
+endif
+
 .PHONY: env-setup env-teardown db/migrate db/rollback migratoin/create migration/status dev install-dependencies test
 
 env-setup:
@@ -7,23 +11,24 @@ env-teardown:
 	docker-compose -f docker-compose.dev.yml down
 
 db/migrate:
-	goose -dir database/migrations -table "migration_versions" postgres "postgres://postgres:postgres@0.0.0.0:${DB_PORT}/test-gin-template_${ENV}?sslmode=disable" up
+	sleep 1
+	goose -dir database/migrations -table "migration_versions" postgres "$(DATABASE_URL)" up
 
 db/rollback:
-	goose -dir database/migrations -table "migration_versions" postgres "postgres://postgres:postgres@0.0.0.0:$(DB_PORT)/test-gin-template_${ENV}?sslmode=disable" down
+	goose -dir database/migrations -table "migration_versions" postgres "$(DATABASE_URL)" down
 
 migration/create:
 ifndef MIGRATION_NAME
 	$(error MIGRATION_NAME is required)
 endif
-	goose -dir database/migrations create ${MIGRATION_NAME} sql
+	goose -dir database/migrations create $(MIGRATION_NAME) sql
 
 migration/status:
-	goose -dir database/migrations -table "migration_versions" postgres "user=postgres dbname=test-gin-template_${ENV} sslmode=disable" status
+	goose -dir database/migrations -table "migration_versions" postgres "$(DATABASE_URL)" status
 
 dev: 
 	make env-setup
-	ENV=development make db/migrate
+	make db/migrate
 	air -c cmd/api/.air.toml
 
 install-dependencies:
