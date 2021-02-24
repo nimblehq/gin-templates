@@ -12,8 +12,19 @@
 
 ### Development
 
+#### Create an ENV file
+
+To start development server, `.env` must be created.
+
+- Copy `.env.example` and rename to `.env`
+
 #### Build dependencies
-[`air`](https://github.com/cosmtrek/air) is used for live reloading. It needs to be built as a binary file in `$GOPATH`.
+
+- [`air`](https://github.com/cosmtrek/air) is used for live reloading
+
+- [`goose`](https://github.com/pressly/goose) is used for database migration. 
+
+They need to be built as a binary file in `$GOPATH`.
 
 
 ```sh
