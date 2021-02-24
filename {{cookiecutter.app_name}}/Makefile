@@ -28,7 +28,7 @@ migration/status:
 
 dev: 
 	make env-setup
-	make db/migrate
+	ENV=development make db/migrate
 	air -c cmd/api/.air.toml
 
 install-dependencies:
