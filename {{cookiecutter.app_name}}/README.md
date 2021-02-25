@@ -52,7 +52,7 @@ make test
 #### Create migration
 
 ```make
-make migration/create MIGRATION_NAME={{migration name}}
+make migration/create MIGRATION_NAME={migration name}
 ```
 
 #### List the migration status
