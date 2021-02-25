@@ -47,7 +47,7 @@ Execute all unit tests:
 make test
 ```
 
-### Usage
+### Migration
 
 #### Create migration
 
