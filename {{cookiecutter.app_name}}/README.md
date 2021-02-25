@@ -27,13 +27,13 @@ To start development server, `.env` must be created.
 They need to be built as a binary file in `$GOPATH`.
 
 
-```sh
+```make
 make install-dependencies
 ```
 
 #### Start development server
 
-```sh
+```make
 make dev
 ```
 
@@ -43,6 +43,32 @@ The application runs locally at http://localhost:8080
 
 Execute all unit tests:
 
-```sh
+```make
 make test
+```
+
+### Usage
+
+#### Create migration
+
+```make
+make migration/create MIGRATION_NAME={{migration name}}
+```
+
+#### List the migration status
+
+```make
+make migration/status
+```
+
+#### Migrate the database
+
+```make
+make db/migrate
+```
+
+#### Rollback the migration
+
+```make
+make db/rollback
 ```
