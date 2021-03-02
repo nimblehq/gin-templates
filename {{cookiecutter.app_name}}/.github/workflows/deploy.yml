@@ -1,0 +1,54 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows:
+      - Test
+    branches:
+      - main
+      - master
+      - develop
+      - development
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Set BRANCH_TAG
+        uses: nimblehq/branch-tag-action@v1.2
+        with:
+          ref: {{ "${{ github.event.workflow_run.head_branch || github.ref }}" }}
+
+      - name: Set HEROKU_APP_NAME
+        run: |
+          if [[ $BRANCH_TAG = "latest" ]]
+          then
+            echo "HEROKU_APP_NAME={{ "${{ secrets.HEROKU_APP_NAME_PRODUCTION }}" }}" >> $GITHUB_ENV
+          else
+            echo "HEROKU_APP_NAME={{ "${{ secrets.HEROKU_APP_NAME_STAGING }}" }}" >> $GITHUB_ENV
+          fi
+
+      - name: Set DATABASE_URL
+        run: |
+          if [[ $BRANCH_TAG = "latest" ]]
+          then
+            echo "DATABASE_URL={{ "${{ secrets.DATABASE_URL_PRODUCTION }}" }}" >> $GITHUB_ENV
+          else
+            echo "DATABASE_URL={{ "${{ secrets.DATABASE_URL_STAGING }}" }}" >> $GITHUB_ENV
+          fi
+
+      - name: Deploy
+        uses: akhileshns/heroku-deploy@v3.8.8
+        with:
+          heroku_api_key: {{ "${{ secrets.HEROKU_API_KEY }}" }}
+          heroku_app_name: $HEROKU_APP_NAME
+          heroku_email: {{ "${{ secrets.HEROKU_ACCOUNT_EMAIL }}" }}
+          usedocker: true
+          docker_build_args: |
+            DATABASE_URL
