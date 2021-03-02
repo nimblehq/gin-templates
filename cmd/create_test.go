@@ -28,6 +28,26 @@ var _ = Describe("Create template", func() {
 		})
 	})
 
+	Context("given .env.example", func() {
+		It("contains project name at DATABASE_URL", func() {
+			content := tests.ReadFile(".env.example")
+
+			fileContainProjectName := strings.Contains(content, "DATABASE_URL=postgres://postgres:postgres@0.0.0.0:5432/test-gin-templates_development?sslmode=disable")
+
+			Expect(fileContainProjectName).To(BeTrue())
+		})
+	})
+
+	Context("given .env.test", func() {
+		It("contains project name at DATABASE_URL", func() {
+			content := tests.ReadFile(".env.test")
+
+			fileContainProjectName := strings.Contains(content, "DATABASE_URL=postgres://postgres:postgres@0.0.0.0:5433/test-gin-templates_test?sslmode=disable")
+
+			Expect(fileContainProjectName).To(BeTrue())
+		})
+	})
+
 	Context("given docker-compose.dev.yml", func() {
 		It("contains project name at container_name", func() {
 			content := tests.ReadFile("docker-compose.dev.yml")
