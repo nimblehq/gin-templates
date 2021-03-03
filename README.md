@@ -10,7 +10,7 @@
 
 Our templates offer a rich boilerplate to jump start Go Gin-based application development.
 
-Check this [wiki](https://github.com/nimblehq/gin-templates/wiki/Directories) for more information about template structure.
+Check this [wiki](https://github.com/nimblehq/gin-templates/wiki/Directories) for more information about the template structure.
 
 ## Get Started
 
