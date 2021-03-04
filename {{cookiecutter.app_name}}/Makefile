@@ -41,7 +41,7 @@ install-dependencies:
 test:
 	docker-compose -f docker-compose.test.yml up -d
 	ENV=test make db/migrate
-	BRANCH=$(BRANCH) go test -v -p 1 -count=1 ./...
+	go test -v -p 1 -count=1 ./...
 	docker-compose -f docker-compose.test.yml down
 
 wait-for-postgres:
