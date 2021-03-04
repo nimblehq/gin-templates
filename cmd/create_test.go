@@ -2,7 +2,6 @@ package cmd_test
 
 import (
 	"os"
-	"strings"
 
 	"github.com/nimblehq/gin-templates/tests"
 
@@ -22,9 +21,9 @@ var _ = Describe("Create template", func() {
 				Fail("Failed to get current directory: " + err.Error())
 			}
 
-			directoryContainProjectName := strings.Contains(dir, "gin-templates/cmd/test-gin-templates")
+			expectedContent := "gin-templates/cmd/test-gin-templates"
 
-			Expect(directoryContainProjectName).To(BeTrue())
+			Expect(dir).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -32,9 +31,9 @@ var _ = Describe("Create template", func() {
 		It("contains project name at DATABASE_URL", func() {
 			content := tests.ReadFile(".env.example")
 
-			fileContainProjectName := strings.Contains(content, "DATABASE_URL=postgres://postgres:postgres@0.0.0.0:5432/test-gin-templates_development?sslmode=disable")
+			expectedContent := "DATABASE_URL=postgres://postgres:postgres@0.0.0.0:5432/test-gin-templates_development?sslmode=disable"
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -42,9 +41,9 @@ var _ = Describe("Create template", func() {
 		It("contains project name at DATABASE_URL", func() {
 			content := tests.ReadFile(".env.test")
 
-			fileContainProjectName := strings.Contains(content, "DATABASE_URL=postgres://postgres:postgres@0.0.0.0:5433/test-gin-templates_test?sslmode=disable")
+			expectedContent := "DATABASE_URL=postgres://postgres:postgres@0.0.0.0:5433/test-gin-templates_test?sslmode=disable"
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -52,17 +51,17 @@ var _ = Describe("Create template", func() {
 		It("contains project name at container_name", func() {
 			content := tests.ReadFile("docker-compose.dev.yml")
 
-			fileContainProjectName := strings.Contains(content, "container_name: test-gin-templates_db")
+			expectedContent := "container_name: test-gin-templates_db"
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 
 		It("contains project name at postgres db env", func() {
 			content := tests.ReadFile("docker-compose.dev.yml")
 
-			fileContainProjectName := strings.Contains(content, "- POSTGRES_DB=test-gin-templates_development")
+			expectedContent := "- POSTGRES_DB=test-gin-templates_development"
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -70,17 +69,17 @@ var _ = Describe("Create template", func() {
 		It("contains project name at container_name", func() {
 			content := tests.ReadFile("docker-compose.test.yml")
 
-			fileContainProjectName := strings.Contains(content, "container_name: test-gin-templates_db_test")
+			expectedContent := "container_name: test-gin-templates_db_test"
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 
 		It("contains project name at postgres db env", func() {
 			content := tests.ReadFile("docker-compose.test.yml")
 
-			fileContainProjectName := strings.Contains(content, "- POSTGRES_DB=test-gin-templates_test")
+			expectedContent := "- POSTGRES_DB=test-gin-templates_test"
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -88,9 +87,9 @@ var _ = Describe("Create template", func() {
 		It("contains project name at module name", func() {
 			content := tests.ReadFile("go.mod")
 
-			fileContainProjectName := strings.Contains(content, "module github.com/nimblehq/test-gin-templates")
+			expectedContent := "module github.com/nimblehq/test-gin-templates"
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -98,9 +97,9 @@ var _ = Describe("Create template", func() {
 		It("contains project name at helpers import", func() {
 			content := tests.ReadFile("bootstrap/database.go")
 
-			fileContainProjectName := strings.Contains(content, `"github.com/nimblehq/test-gin-templates/helpers"`)
+			expectedContent := `"github.com/nimblehq/test-gin-templates/helpers"`
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -108,9 +107,9 @@ var _ = Describe("Create template", func() {
 		It("contains project name at api v1 routers import", func() {
 			content := tests.ReadFile("bootstrap/router.go")
 
-			fileContainProjectName := strings.Contains(content, `apiv1router "github.com/nimblehq/test-gin-templates/lib/api/v1/routers"`)
+			expectedContent := `apiv1router "github.com/nimblehq/test-gin-templates/lib/api/v1/routers"`
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -118,9 +117,9 @@ var _ = Describe("Create template", func() {
 		It("contains project name at bootstrap import", func() {
 			content := tests.ReadFile("cmd/api/main.go")
 
-			fileContainProjectName := strings.Contains(content, `"github.com/nimblehq/test-gin-templates/bootstrap"`)
+			expectedContent := `"github.com/nimblehq/test-gin-templates/bootstrap"`
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -128,25 +127,25 @@ var _ = Describe("Create template", func() {
 		It("contains project name at app_name", func() {
 			content := tests.ReadFile("config/app.toml")
 
-			fileContainProjectName := strings.Contains(content, `app_name = "test-gin-templates"`)
+			expectedContent := `app_name = "test-gin-templates"`
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 
 		It("contains project name at debug db name", func() {
 			content := tests.ReadFile("config/app.toml")
 
-			fileContainProjectName := strings.Contains(content, `db_name = "test-gin-templates_development"`)
+			expectedContent := `db_name = "test-gin-templates_development"`
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 
 		It("contains project name at test db name", func() {
 			content := tests.ReadFile("config/app.toml")
 
-			fileContainProjectName := strings.Contains(content, `db_name = "test-gin-templates_test"`)
+			expectedContent := `db_name = "test-gin-templates_test"`
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -154,9 +153,9 @@ var _ = Describe("Create template", func() {
 		It("contains project name at helpers import", func() {
 			content := tests.ReadFile("helpers/config_test.go")
 
-			fileContainProjectName := strings.Contains(content, `"github.com/nimblehq/test-gin-templates/helpers"`)
+			expectedContent := `"github.com/nimblehq/test-gin-templates/helpers"`
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -164,9 +163,9 @@ var _ = Describe("Create template", func() {
 		It("contains project name at test import", func() {
 			content := tests.ReadFile("helpers/helpers_suite_test.go")
 
-			fileContainProjectName := strings.Contains(content, `"github.com/nimblehq/test-gin-templates/test"`)
+			expectedContent := `"github.com/nimblehq/test-gin-templates/test"`
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -174,9 +173,9 @@ var _ = Describe("Create template", func() {
 		It("contains project name at test import", func() {
 			content := tests.ReadFile("lib/api/v1/controllers/controllers_suite_test.go")
 
-			fileContainProjectName := strings.Contains(content, `"github.com/nimblehq/test-gin-templates/test"`)
+			expectedContent := `"github.com/nimblehq/test-gin-templates/test"`
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -184,9 +183,9 @@ var _ = Describe("Create template", func() {
 		It("contains project name at test import", func() {
 			content := tests.ReadFile("lib/api/v1/controllers/health_test.go")
 
-			fileContainProjectName := strings.Contains(content, `"github.com/nimblehq/test-gin-templates/test"`)
+			expectedContent := `"github.com/nimblehq/test-gin-templates/test"`
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -194,9 +193,9 @@ var _ = Describe("Create template", func() {
 		It("contains project name at api v1 controllers import", func() {
 			content := tests.ReadFile("lib/api/v1/routers/router.go")
 
-			fileContainProjectName := strings.Contains(content, `"github.com/nimblehq/test-gin-templates/lib/api/v1/controllers"`)
+			expectedContent := `"github.com/nimblehq/test-gin-templates/lib/api/v1/controllers"`
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 
@@ -204,9 +203,9 @@ var _ = Describe("Create template", func() {
 		It("contains project name at bootstrap import", func() {
 			content := tests.ReadFile("test/test.go")
 
-			fileContainProjectName := strings.Contains(content, `"github.com/nimblehq/test-gin-templates/bootstrap"`)
+			expectedContent := `"github.com/nimblehq/test-gin-templates/bootstrap"`
 
-			Expect(fileContainProjectName).To(BeTrue())
+			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
 })
