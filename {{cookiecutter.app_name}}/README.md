@@ -14,9 +14,9 @@
 
 #### Create an ENV file
 
-To start development server, `.env` must be created.
+To start the development server, `.env` file must be created.
 
-- Copy `.env.example` and rename to `.env`
+- Copy `.env.example` file and rename to `.env`
 
 #### Build dependencies
 
