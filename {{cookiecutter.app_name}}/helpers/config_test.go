@@ -1,7 +1,7 @@
 package helpers_test
 
 import (
-	"github.com/nimblehq/xxxx/helpers"
+	"github.com/nimblehq/test-gin-template/helpers"
 
 	"github.com/gin-gonic/gin"
 	. "github.com/onsi/ginkgo"

@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/nimblehq/xxxx/bootstrap"
+	"github.com/nimblehq/test-gin-template/bootstrap"
 
 	"github.com/gin-gonic/gin"
 )

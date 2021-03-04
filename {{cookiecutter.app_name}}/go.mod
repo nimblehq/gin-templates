@@ -1,4 +1,4 @@
-module github.com/nimblehq/xxxx
+module github.com/nimblehq/test-gin-template
 
 go 1.16
 

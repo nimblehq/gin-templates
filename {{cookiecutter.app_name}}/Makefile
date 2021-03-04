@@ -1,4 +1,4 @@
-.PHONY: env-setup env-teardown dev install-dependencies test
+.PHONY: env-setup env-teardown db/migrate db/rollback migratoin/create migration/status dev install-dependencies test
 
 env-setup:
 	docker-compose -f docker-compose.dev.yml up -d
@@ -7,10 +7,11 @@ env-teardown:
 	docker-compose -f docker-compose.dev.yml down
 
 db/migrate:
-	goose -dir database/migrations -table "migration_versions" postgres "user=postgres dbname=xxxx_development sslmode=disable" up
+	make check-env
+	goose -dir database/migrations -table "migration_versions" postgres "postgres://postgres:postgres@0.0.0.0:${DB_PORT}/test-gin-template_${ENV}?sslmode=disable" up
 
 db/rollback:
-	goose -dir database/migrations -table "migration_versions" postgres "user=postgres dbname=xxxx_development sslmode=disable" down
+	goose -dir database/migrations -table "migration_versions" postgres "postgres://postgres:postgres@0.0.0.0:$(DB_PORT)/test-gin-template_${ENV}?sslmode=disable" down
 
 migration/create:
 ifndef MIGRATION_NAME
@@ -19,9 +20,11 @@ endif
 	goose -dir database/migrations create ${MIGRATION_NAME} sql
 
 migration/status:
-	goose -dir database/migrations -table "migration_versions" postgres "user=postgres dbname=xxxx_development sslmode=disable" status
+	goose -dir database/migrations -table "migration_versions" postgres "user=postgres dbname=test-gin-template_${ENV} sslmode=disable" status
 
-dev: env-setup
+dev: 
+	make env-setup
+	ENV=development make db/migrate
 	air -c cmd/api/.air.toml
 
 install-dependencies:
@@ -31,5 +34,6 @@ install-dependencies:
 
 test:
 	docker-compose -f docker-compose.test.yml up -d
+	ENV=test make db/migrate
 	BRANCH=$(BRANCH) go test -v -p 1 -count=1 ./...
 	docker-compose -f docker-compose.test.yml down
