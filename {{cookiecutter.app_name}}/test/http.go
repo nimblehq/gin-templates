@@ -1,22 +1,14 @@
 package test
 
 import (
-	"io"
-	"net/http"
 	"net/http/httptest"
 
-	. "github.com/onsi/ginkgo"
+	"github.com/gin-gonic/gin"
 )
 
-func MakeRequest(method string, path string, body io.Reader) *httptest.ResponseRecorder {
-	req, err := http.NewRequest(method, path, body)
-	if err != nil {
-		Fail("Failed to make a request: " + err.Error())
-	}
-
+func CreateGinTestContext() (*gin.Context, *httptest.ResponseRecorder) {
 	resp := httptest.NewRecorder()
+	c, _ := gin.CreateTestContext(resp)
 
-	Router.ServeHTTP(resp, req)
-
-	return resp
+	return c, resp
 }

@@ -21,8 +21,6 @@ func SetupTestEnvironment() {
 	bootstrap.LoadConfig()
 
 	bootstrap.InitDatabase()
-
-	Router = bootstrap.SetupRouter()
 }
 
 func setRootDir() {
