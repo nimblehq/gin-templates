@@ -7,15 +7,13 @@ env:
 
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.4
 
       - name: Install cookiecutter
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y cookiecutter
+        run: sudo -H python3 -m pip install cookiecutter
 
       - name: Setup Go environment
         uses: actions/setup-go@v2.1.3
