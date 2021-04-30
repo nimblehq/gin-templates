@@ -24,6 +24,8 @@ Check this [wiki](https://github.com/nimblehq/gin-templates/wiki/Directories) fo
 
 ## Usage
 
+- Add `GO111MODULE=auto` to shell config (`.bashrc` for Bash or `.zshrc` for ZSH).
+
 - Download **latest** version of gin-templates.
   ```
   go get github.com/nimblehq/gin-templates
