@@ -1,3 +1,4 @@
 {
-  "app_name": "default-app-name"
+  "app_name": "default-app-name",
+  "use_logrus": "y"
 }

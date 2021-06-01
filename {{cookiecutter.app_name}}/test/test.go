@@ -1,12 +1,13 @@
 package test
 
 import (
-	"log"
 	"os"
 	"path/filepath"
 	"runtime"
+	{% if cookiecutter.use_logrus != "y" %}"log"{% endif %}
 
 	"github.com/nimblehq/{{cookiecutter.app_name}}/bootstrap"
+	{% if cookiecutter.use_logrus == "y" %}"github.com/nimblehq/{{cookiecutter.app_name}}/helpers/log"{% endif %}
 
 	"github.com/gin-gonic/gin"
 )
