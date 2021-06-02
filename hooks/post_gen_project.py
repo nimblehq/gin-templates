@@ -17,10 +17,39 @@ def print_log(message):
     print(CYELLOW + message + CEND)
 
 
+def remove_heroku_files():
+    """
+    Removes heroku related files
+    """
+    shutil.rmtree(os.path.join(
+        PROJECT_DIRECTORY, "deploy/heroku"
+    ))
+    os.remove(os.path.join(
+        PROJECT_DIRECTORY, ".github/workflows/deploy.yml"
+    ))
+
+
+def remove_empty_folders():
+    """
+    List all empty folders and remove them
+    """
+    for root, dirs, files in os.walk(PROJECT_DIRECTORY, topdown=False):
+        for dir in dirs:
+            if os.path.isdir(os.path.join(root, dir)):
+                if (len(os.listdir(os.path.join(root, dir))) == 0):
+                    print_log(f'Removing {dir} folder')
+                    os.rmdir(os.path.join(root, dir))
+
+
 # Remove logrus add-on if not seleted
 if '{{ cookiecutter.use_logrus }}'.lower() == 'no':
     print_log('Removing logrus add-on')
     remove_logrus_files()
+
+# Remove heroku add-on if not seleted
+if '{{ cookiecutter.use_heroku }}'.lower() != 'y':
+    print_log('Removing heroku add-on')
+    remove_heroku_files()
 
 # Download the missing dependencies
 print_log('Downloading dependencies')
@@ -29,3 +58,6 @@ os.system("go mod tidy")
 # Format code
 print_log('Formating code')
 os.system("go fmt ./...")
+
+# Remove empty folders
+remove_empty_folders()
