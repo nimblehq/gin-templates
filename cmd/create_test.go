@@ -274,4 +274,20 @@ var _ = Describe("Create template", func() {
 			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
+
+	Context("given logrus add-on", func() {
+		It("contains helpers/log folder", func() {
+			_, err := os.Stat("helpers/log")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains logrus package in go.mod", func() {
+			content := tests.ReadFile("go.mod")
+
+			expectedContent := "github.com/sirupsen/logrus v1.8.1"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+	})
 })
