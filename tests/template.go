@@ -1,14 +1,24 @@
 package tests
 
 import (
+	"fmt"
 	"io"
-	"log"
 	"os/exec"
 
 	. "github.com/onsi/ginkgo"
 )
 
-func CreateProjectFromGinTemplate(input string, templateGeneratedPath string) {
+// This should be consistent with cookiecutter.json
+type Cookiecutter struct {
+	AppName string
+}
+
+// String order MUST be consistent with cookiecutter.json
+func (c Cookiecutter) structToString() string {
+	return fmt.Sprintf("%v", c.AppName)
+}
+
+func (c Cookiecutter) CreateProjectFromGinTemplate(templateGeneratedPath string) {
 	shCmd := exec.Command("cookiecutter", "../")
 
 	stdin, err := shCmd.StdinPipe()
@@ -18,7 +28,7 @@ func CreateProjectFromGinTemplate(input string, templateGeneratedPath string) {
 
 	go func() {
 		defer stdin.Close()
-		_, err = io.WriteString(stdin, input)
+		_, err = io.WriteString(stdin, c.structToString())
 		if err != nil {
 			Fail("Failed to write std value to file: " + err.Error())
 		}
@@ -27,9 +37,7 @@ func CreateProjectFromGinTemplate(input string, templateGeneratedPath string) {
 	output, err := shCmd.CombinedOutput()
 	if err != nil {
 		Fail("Failed to create template: " + err.Error() + "\n" + string(output))
-	} else {
-		log.Println("Template created successfully.")
 	}
 
-	ChangeDirectory(templateGeneratedPath + "/test-gin-templates")
+	ChangeDirectory(templateGeneratedPath + "/" + c.AppName)
 }
