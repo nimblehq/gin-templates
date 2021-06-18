@@ -1,6 +1,7 @@
 package tests
 
 import (
+	"io"
 	"log"
 	"os"
 	"os/exec"
@@ -42,33 +43,25 @@ func RemoveCookiecuttersCache() {
 	}
 }
 
-func CreateProjectFromGinTemplate() string {
-	input := []byte("test-gin-templates")
+func CreateProjectFromGinTemplate(input string) string {
+	shCmd := exec.Command("cookiecutter", "../")
 
-	reader, writer, err := os.Pipe()
+	stdin, err := shCmd.StdinPipe()
 	if err != nil {
-		Fail("Failed to create file to store stdin value: " + err.Error())
+		Fail("Failed to get stdin pipe: " + err.Error())
 	}
 
-	_, err = writer.Write(input)
+	go func() {
+		defer stdin.Close()
+		_, err = io.WriteString(stdin, input)
+		if err != nil {
+			Fail("Failed to write std value to file: " + err.Error())
+		}
+	}()
+
+	output, err := shCmd.CombinedOutput()
 	if err != nil {
-		Fail("Failed to write stdin value to file: " + err.Error())
-	}
-	writer.Close()
-
-	var shCmd *exec.Cmd
-	if os.Getenv("BRANCH") == "" {
-		shCmd = exec.Command("nimble-gin", "create")
-	} else {
-		shCmd = exec.Command("nimble-gin", "create", "-b", os.Getenv("BRANCH"))
-	}
-
-	shCmd.Stdout = os.Stdout
-	shCmd.Stdin = reader
-
-	err = shCmd.Run()
-	if err != nil {
-		Fail("Failed to create template: " + err.Error())
+		Fail("Failed to create template: " + err.Error() + "\n" + string(output))
 	} else {
 		log.Println("Template created successfully.")
 	}
