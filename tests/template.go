@@ -18,7 +18,7 @@ func (c Cookiecutter) structToString() string {
 	return fmt.Sprintf("%v", c.AppName)
 }
 
-func (c Cookiecutter) CreateProjectFromGinTemplate(templateGeneratedPath string) {
+func (c Cookiecutter) CreateProjectFromGinTemplate(currentTemplatePath string) {
 	shCmd := exec.Command("cookiecutter", "../")
 
 	stdin, err := shCmd.StdinPipe()
@@ -39,5 +39,5 @@ func (c Cookiecutter) CreateProjectFromGinTemplate(templateGeneratedPath string)
 		Fail("Failed to create template: " + err.Error() + "\n" + string(output))
 	}
 
-	ChangeDirectory(templateGeneratedPath + "/" + c.AppName)
+	ChangeDirectory(currentTemplatePath + "/" + c.AppName)
 }
