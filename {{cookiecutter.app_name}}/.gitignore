@@ -1,2 +1,6 @@
 tmp/
 .env
+{% if cookiecutter.variant != 'API' %}
+# Assets
+node_modules/
+static/{% endif %}
