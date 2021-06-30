@@ -1,0 +1,126 @@
+<svg
+  width="168"
+  height="40"
+  viewBox="0 0 168 40"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g clip-path="url(#clip0)">
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M142.118 2.77464H136.84L136.841 31.9996H142.118V2.77464Z"
+      fill="currentColor"
+    />
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M151.709 19.6294C152.197 16.4665 154.388 14.4652 157.514 14.4652C160.801 14.4652 162.954 16.4665 163.075 19.6294H151.709ZM157.474 10.4217C150.979 10.4217 146.433 14.8256 146.433 21.3512C146.433 27.7967 150.858 32.2001 157.596 32.2001C161.411 32.2001 164.577 30.8388 166.729 28.5168L163.887 25.5945C162.345 27.1561 160.275 27.9965 158.042 27.9965C154.876 27.9965 152.522 26.1551 151.832 23.1125H167.865C168.393 15.3459 165.105 10.4217 157.474 10.4217Z"
+      fill="currentColor"
+    />
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M45.5946 10.3815C42.0633 10.4212 39.3437 11.7422 37.8013 14.5851V10.5812H32.5244V31.9999H37.8013V21.4715C37.8013 17.9477 39.9116 15.346 43.4837 15.3057C46.4875 15.3057 48.3136 17.1476 48.3136 20.15V31.9999H53.6313V18.6281C53.6313 13.5444 50.5872 10.3815 45.5946 10.3815Z"
+      fill="currentColor"
+    />
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M58.4302 31.9992H63.707V10.5811H58.4302V31.9992Z"
+      fill="currentColor"
+    />
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M96.9604 10.3815C93.1449 10.4212 90.3033 12.0231 88.8829 15.5055C87.8674 12.2631 85.2296 10.3815 81.4135 10.3815C77.9633 10.4212 75.2846 11.703 73.783 14.5448V10.5812H68.5061V31.9999H73.783V21.4307C73.783 17.9477 75.853 15.3852 79.3026 15.266C82.2253 15.266 84.0116 17.1068 84.0116 20.15V31.9999H89.3288V21.4307C89.3288 17.9477 91.3993 15.3852 94.8087 15.266C97.7308 15.266 99.558 17.1068 99.558 20.15V31.9999H104.875V18.6281C104.875 13.5444 101.871 10.3815 96.9604 10.3815Z"
+      fill="currentColor"
+    />
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M121.08 27.7163C117.467 27.7163 114.952 25.0743 114.952 21.231C114.952 17.4678 117.467 14.7849 121.08 14.7849C124.652 14.7849 127.169 17.4678 127.169 21.231C127.169 25.034 124.652 27.7163 121.08 27.7163ZM122.258 10.4213C119.01 10.4213 116.493 11.7423 114.951 14.1045V2.77446H109.674V31.9999H114.951V28.517C116.534 30.8787 119.051 32.2002 122.339 32.2002C128.508 32.2002 132.527 27.8366 132.527 21.3905C132.527 14.8257 128.387 10.4213 122.258 10.4213Z"
+      fill="currentColor"
+    />
+    <path
+      opacity="0.3"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M58.4302 7.97903H63.707V2.77446H58.4302V7.97903Z"
+      fill="currentColor"
+    />
+    <path
+      opacity="0.5"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M0.0805664 16.0005H8.19166V8.00049H0.0805664V16.0005Z"
+      fill="currentColor"
+    />
+    <path
+      opacity="0.6"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M8.19165 8.00031L16.3027 16.0003H8.19165V8.00031Z"
+      fill="currentColor"
+    />
+    <path
+      opacity="0.4"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M0.0805664 24.0004H8.19166V16.0004H0.0805664V24.0004Z"
+      fill="currentColor"
+    />
+    <path
+      opacity="0.3"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M0.0805664 40H8.19166V32.0006H0.0805664V40Z"
+      fill="currentColor"
+    />
+    <path
+      opacity="0.5"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M8.19165 24.0004H16.3027V16.0004H8.19165V24.0004Z"
+      fill="currentColor"
+    />
+    <path
+      opacity="0.6"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M16.3027 24.0004H24.4138V16.0004H16.3027V24.0004Z"
+      fill="currentColor"
+    />
+    <path
+      opacity="0.7"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M16.3027 7.99998H24.4138V0H16.3027V7.99998Z"
+      fill="currentColor"
+    />
+    <path
+      opacity="0.4"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M8.19165 24.0003H16.3027V32.0003L8.19165 24.0003Z"
+      fill="currentColor"
+    />
+    <path
+      opacity="0.5"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M16.3027 32.0007H24.4138V24.0007H16.3027V32.0007Z"
+      fill="currentColor"
+    />
+  </g>
+  <defs>
+    <clipPath id="clip0">
+      <rect
+        width="167.839"
+        height="40"
+        fill="currentColor"
+        transform="translate(0.0805664)"
+      />
+    </clipPath>
+  </defs>
+</svg>
