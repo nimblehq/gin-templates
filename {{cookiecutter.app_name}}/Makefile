@@ -28,14 +28,15 @@ endif
 migration/status:
 	goose -dir database/migrations -table "migration_versions" postgres "$(DATABASE_URL)" status
 
-dev: 
+dev:
 	make env-setup
 	make db/migrate
-	air -c cmd/api/.air.toml
+	forego start -f Procfile.dev
 
 install-dependencies:
 	go get github.com/cosmtrek/air@v1.15.1
 	go get github.com/pressly/goose/cmd/goose
+	go get github.com/ddollar/forego
 	go mod tidy
 
 test:
