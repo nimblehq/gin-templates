@@ -1,6 +1,6 @@
 {
   "app_name": "default-app-name",
-  "web_variant": ["yes", "no"],
+  "variant": ["API only", "Web only", "Both"],
   "use_logrus": ["yes", "no"],
   "use_heroku": ["yes", "no"]
 }
