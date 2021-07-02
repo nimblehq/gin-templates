@@ -1,5 +1,6 @@
 {
   "app_name": "default-app-name",
   "use_logrus": ["yes", "no"],
-  "web_variant": ["yes", "no"]
+  "variant": ["API only", "Web only", "Both"],
+  "css_addon": ["None", "Bootstrap", "Tailwinds"]
 }
