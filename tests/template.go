@@ -1,82 +1,43 @@
 package tests
 
 import (
-	"log"
-	"os"
+	"fmt"
+	"io"
 	"os/exec"
 
 	. "github.com/onsi/ginkgo"
 )
 
-func DownloadGinTemplate() {
-	shCmd := exec.Command("go", "get", "github.com/nimblehq/gin-templates")
-	shCmd.Stdout = os.Stdout
-	err := shCmd.Run()
-	if err != nil {
-		Fail("Failed to get gin-templates: " + err.Error())
-	} else {
-		log.Println("Gin-templates downloaded successfully.")
-	}
+// This should be consistent with cookiecutter.json
+type Cookiecutter struct {
+	AppName string
 }
 
-func BuildGinTemplate() {
-	shCmd := exec.Command("go", "build", "-o", os.Getenv("GOPATH")+"/bin/nimble-gin", "github.com/nimblehq/gin-templates")
-	shCmd.Stdout = os.Stdout
-	err := shCmd.Run()
-	if err != nil {
-		Fail("Failed to build gin-templates: " + err.Error())
-	} else {
-		log.Println("Gin-templates built successfully.")
-	}
+// String order MUST be consistent with cookiecutter.json
+func (c Cookiecutter) structToString() string {
+	return fmt.Sprintf("%v", c.AppName)
 }
 
-func RemoveCookiecuttersCache() {
-	shCmd := exec.Command("rm", "-rf", os.Getenv("HOME")+"/.cookiecutters/gin-templates")
-	shCmd.Stdout = os.Stdout
+func (c Cookiecutter) CreateProjectFromGinTemplate(currentTemplatePath string) {
+	shCmd := exec.Command("cookiecutter", "../")
 
-	err := shCmd.Run()
+	stdin, err := shCmd.StdinPipe()
 	if err != nil {
-		Fail("Failed to remove cookiecutters cache: " + err.Error())
-	} else {
-		log.Println("Cookiecutters cache removed successfully.")
+		Fail("Failed to get stdin pipe: " + err.Error())
 	}
-}
 
-func CreateProjectFromGinTemplate() string {
-	input := []byte("test-gin-templates")
+	go func() {
+		defer stdin.Close()
+		_, err = io.WriteString(stdin, c.structToString())
+		if err != nil {
+			Fail("Failed to write std value to file: " + err.Error())
+		}
+	}()
 
-	reader, writer, err := os.Pipe()
+	output, err := shCmd.CombinedOutput()
 	if err != nil {
-		Fail("Failed to create file to store stdin value: " + err.Error())
+		Fail("Failed to create template: " + err.Error() + "\n" + string(output))
 	}
 
-	_, err = writer.Write(input)
-	if err != nil {
-		Fail("Failed to write stdin value to file: " + err.Error())
-	}
-	writer.Close()
-
-	var shCmd *exec.Cmd
-	if os.Getenv("BRANCH") == "" {
-		shCmd = exec.Command("nimble-gin", "create")
-	} else {
-		shCmd = exec.Command("nimble-gin", "create", "-b", os.Getenv("BRANCH"))
-	}
-
-	shCmd.Stdout = os.Stdout
-	shCmd.Stdin = reader
-
-	err = shCmd.Run()
-	if err != nil {
-		Fail("Failed to create template: " + err.Error())
-	} else {
-		log.Println("Template created successfully.")
-	}
-
-	currentPath, err := os.Getwd()
-	if err != nil {
-		Fail("Failed to get current directory: " + err.Error())
-	}
-
-	return currentPath
+	ChangeDirectory(currentTemplatePath + "/" + c.AppName)
 }
