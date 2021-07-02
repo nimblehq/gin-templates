@@ -4,14 +4,19 @@ import shutil
 # Get the root project directory
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
-# Removes log helper folder
-def remove_logrus_files():
+def remove_files(path):
+    """
+    Removes files in path
+    """
     shutil.rmtree(os.path.join(
-        PROJECT_DIRECTORY, "helpers/log"
+        PROJECT_DIRECTORY, path
     ))
 
 # Print log with color
 def print_log(message):
+    """
+    Print log with color
+    """
     CYELLOW = '\33[33m'  # YELLOW color
     CEND = '\033[0m'  # END color
     print(CYELLOW + message + CEND)
@@ -44,7 +49,7 @@ def remove_empty_folders():
 # Remove logrus add-on if not seleted
 if '{{ cookiecutter.use_logrus }}'.lower() == 'no':
     print_log('Removing logrus add-on')
-    remove_logrus_files()
+    remove_files("helpers/log")
 
 # Remove heroku add-on if not seleted
 if '{{ cookiecutter.use_heroku }}'.lower() == 'no':
