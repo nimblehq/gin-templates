@@ -2,36 +2,31 @@
 Setting easy to read/maintain cookiecutter variables:
 
 -----------
-Web Variant
-cookiecutter.web_addon
+Web/API Variant
+cookiecutter._web_variant
+cookiecutter._api_variant
 -----------
 {% if cookiecutter.variant in ['Web only', 'Both'] %}
-    {{ cookiecutter.update({ 'web_variant': 'y' }) }}
-{% else %}
-    {{ cookiecutter.update({ 'web_variant': 'n' }) }}
+    {{ cookiecutter.update({ '_web_variant': 'y' }) }}
 {% endif %}
 
 API Variant
 {% if cookiecutter.variant in ['API only', 'Both'] %}
-    {{ cookiecutter.update({ 'api_variant': 'y' }) }}
-{% else %}
-    {{ cookiecutter.update({ 'api_variant': 'n' }) }}
+    {{ cookiecutter.update({ '_api_variant': 'y' }) }}
 {% endif %}
 
 -----------
-CSS Addon
-cookiecutter.css_addon
+CSS Addons
+cookiecutter._bootstrap_addon
+cookiecutter._tailwinds_addon
 -----------
-Ignored unless a condition matches
-{{ cookiecutter.update({ 'bootstrap_addon': 'n' }) }}
-{{ cookiecutter.update({ 'tailwinds_addon': 'n' }) }}
 
 Only project with web:
-{% if cookiecutter.web_variant == 'y' %}
+{% if cookiecutter._web_variant == 'y' %}
     {% if cookiecutter.css_addon == 'Bootstrap' %}
-        {{ cookiecutter.update({ 'bootstrap_addon': 'y' }) }}
+        {{ cookiecutter.update({ '_bootstrap_addon': 'y' }) }}
     {% elif cookiecutter.css_addon == 'Tailwinds' %}
-        {{ cookiecutter.update({ 'tailwinds_addon': 'y' }) }}
+        {{ cookiecutter.update({ '_tailwinds_addon': 'y' }) }}
     {% endif %}
 {% endif %}
 '''
