@@ -3,10 +3,10 @@ package bootstrap
 import (
 	"fmt"
 	"strings"
-	{% if cookiecutter.use_logrus != "y" %}"log"{% endif %}
+	{% if cookiecutter.use_logrus == "no" %}"log"{% endif %}
 
 	"github.com/nimblehq/{{cookiecutter.app_name}}/helpers"
-	{% if cookiecutter.use_logrus == "y" %}"github.com/nimblehq/{{cookiecutter.app_name}}/helpers/log"{% endif %}
+	{% if cookiecutter.use_logrus == "yes" %}"github.com/nimblehq/{{cookiecutter.app_name}}/helpers/log"{% endif %}
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
