@@ -15,12 +15,17 @@ const (
 
 // Field and order MUST be the same as cookiecutter.json
 type Cookiecutter struct {
-	AppName string
+	AppName   string
+	UseLogrus Choices
 }
 
 func (c *Cookiecutter) fillDefaultValue() {
 	if len(c.AppName) == 0 {
 		c.AppName = "test-gin-templates"
+	}
+
+	if c.UseLogrus != Yes && c.UseLogrus != No {
+		c.UseLogrus = No
 	}
 }
 
