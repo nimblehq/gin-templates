@@ -24,7 +24,7 @@ def print_log(message):
 
 
 # Remove logrus add-on if not seleted
-if '{{ cookiecutter.use_logrus }}'.lower() != 'y':
+if '{{ cookiecutter.use_logrus }}'.lower() == 'no':
     print_log('Removing logrus add-on')
     remove_logrus_files()
 

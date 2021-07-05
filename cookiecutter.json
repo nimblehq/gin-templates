@@ -1,4 +1,4 @@
 {
   "app_name": "default-app-name",
-  "use_logrus": "y"
+  "use_logrus": ["Yes", "No"]
 }
