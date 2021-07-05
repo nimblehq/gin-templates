@@ -2,7 +2,7 @@ package bootstrap
 
 import (
 	apiv1router "github.com/nimblehq/{{cookiecutter.app_name}}/lib/api/v1/routers"
-	{% if cookiecutter.web_variant == "yes" %}webrouter "github.com/nimblehq/{{cookiecutter.app_name}}/lib/web/routers"{% endif %}
+	{% if cookiecutter._web_variant == "y" %}webrouter "github.com/nimblehq/{{cookiecutter.app_name}}/lib/web/routers"{% endif %}
 
 	"github.com/gin-gonic/gin"
 )

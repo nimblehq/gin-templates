@@ -1,2 +1,2 @@
 web: air -c cmd/api/.air.toml
-{% if cookiecutter.web_variant == "yes" %}snowpack: npm run dev{% endif %}
+{% if cookiecutter._web_variant == "y" %}snowpack: npm run dev{% endif %}

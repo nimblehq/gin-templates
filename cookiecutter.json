@@ -2,5 +2,10 @@
   "app_name": "default-app-name",
   "variant": ["API only", "Web only", "Both"],
   "use_logrus": ["yes", "no"],
-  "use_heroku": ["yes", "no"]
+  "use_heroku": ["yes", "no"],
+
+  "_api_variant": "n",
+  "_web_variant": "n",
+  "_bootstrap_addon": "n",
+  "_tailwinds_addon": "n"
 }
