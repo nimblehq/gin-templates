@@ -4,20 +4,14 @@ import shutil
 # Get the root project directory
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
-
+# Removes log helper folder
 def remove_logrus_files():
-    """
-    Removes log helper folder
-    """
     shutil.rmtree(os.path.join(
         PROJECT_DIRECTORY, "helpers/log"
     ))
 
-
+# Print log with color
 def print_log(message):
-    """
-    Print log with color
-    """
     CYELLOW = '\33[33m'  # YELLOW color
     CEND = '\033[0m'  # END color
     print(CYELLOW + message + CEND)
