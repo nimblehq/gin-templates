@@ -10,4 +10,5 @@ require (
 	github.com/spf13/viper v1.7.1
 	gorm.io/driver/postgres v1.0.8
 	gorm.io/gorm v1.20.12
+	{% if cookiecutter.use_logrus == "yes" -%}github.com/sirupsen/logrus v1.8.1{%- endif %}
 )
