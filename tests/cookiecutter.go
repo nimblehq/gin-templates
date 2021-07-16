@@ -17,6 +17,7 @@ const (
 type Cookiecutter struct {
 	AppName   string
 	UseLogrus Choices
+	UseHeroku Choices
 }
 
 func (c *Cookiecutter) fillDefaultValue() {
@@ -26,6 +27,10 @@ func (c *Cookiecutter) fillDefaultValue() {
 
 	if c.UseLogrus != Yes && c.UseLogrus != No {
 		c.UseLogrus = No
+	}
+
+	if c.UseHeroku != Yes && c.UseHeroku != No {
+		c.UseHeroku = No
 	}
 }
 
