@@ -468,6 +468,32 @@ var _ = Describe("Create template", func() {
 				Expect(f.Name()).To(Equal(expectedFiles[k]))
 			}
 		})
+
+		It("contains heroku instruction in README", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:   "test-gin-templates",
+				UseHeroku: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("README.md")
+
+			expectedContent := "Deploy to Heroku with Terraform"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+
+		It("contains heroku files in .gitignore", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:   "test-gin-templates",
+				UseHeroku: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile(".gitignore")
+
+			expectedContent := "deploy/**/.terraform/"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
 	})
 
 	Context("given NO heroku add-on", func() {
@@ -480,6 +506,32 @@ var _ = Describe("Create template", func() {
 			_, err := os.Stat("deploy/heroku")
 
 			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contains heroku instruction in README", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:   "test-gin-templates",
+				UseHeroku: tests.No,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("README.md")
+
+			expectedContent := "Deploy to Heroku with Terraform"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+
+		It("does NOT contains heroku files in .gitignore", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:   "test-gin-templates",
+				UseHeroku: tests.No,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile(".gitignore")
+
+			expectedContent := "deploy/**/.terraform/"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
 		})
 	})
 })
