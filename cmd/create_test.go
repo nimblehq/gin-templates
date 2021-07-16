@@ -1,6 +1,7 @@
 package cmd_test
 
 import (
+	"io/ioutil"
 	"os"
 
 	"github.com/nimblehq/gin-templates/tests"
@@ -428,6 +429,57 @@ var _ = Describe("Create template", func() {
 			expectedContent := "github.com/nimblehq/test-gin-templates/helpers/log"
 
 			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+	})
+
+	Context("given heroku add-on", func() {
+		It("contains deploy/heroku folder", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:   "test-gin-templates",
+				UseHeroku: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("deploy/heroku")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains valid files in deploy/heroku folder", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:   "test-gin-templates",
+				UseHeroku: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			files, err := ioutil.ReadDir("deploy/heroku")
+			if err != nil {
+				Fail("Failed to read directory: " + err.Error())
+			}
+
+			expectedFiles := []string{
+				"config.tf",
+				"main.tf",
+				"terraform.tfvars.sample",
+				"variables.tf",
+			}
+
+			Expect(len(files)).To(Equal(len(expectedFiles)))
+
+			for k, f := range files {
+				Expect(f.Name()).To(Equal(expectedFiles[k]))
+			}
+		})
+	})
+
+	Context("given NO heroku add-on", func() {
+		It("does NOT contains deploy/heroku folder", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:   "test-gin-templates",
+				UseHeroku: tests.No,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("deploy/heroku")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
 		})
 	})
 })

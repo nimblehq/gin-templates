@@ -47,7 +47,7 @@ if '{{ cookiecutter.use_logrus }}'.lower() == 'no':
     remove_logrus_files()
 
 # Remove heroku add-on if not seleted
-if '{{ cookiecutter.use_heroku }}'.lower() != 'y':
+if '{{ cookiecutter.use_heroku }}'.lower() == 'no':
     print_log('Removing heroku add-on')
     remove_heroku_files()
 
