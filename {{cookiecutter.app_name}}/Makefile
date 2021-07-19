@@ -38,7 +38,7 @@ install-dependencies:
 	go get github.com/pressly/goose/cmd/goose
 	go get github.com/ddollar/forego
 	go mod tidy
-	{% if cookiecutter.web_variant == "y" %}npm install{% endif %}
+	{% if cookiecutter.web_variant == "yes" %}npm install{% endif %}
 
 test:
 	docker-compose -f docker-compose.test.yml up -d
