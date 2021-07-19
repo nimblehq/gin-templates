@@ -1,6 +1,6 @@
 {
   "app_name": "default-app-name",
-  "web_variant": "y",
+  "web_variant": ["yes", "no"],
   "use_logrus": ["yes", "no"],
   "use_heroku": ["yes", "no"]
 }

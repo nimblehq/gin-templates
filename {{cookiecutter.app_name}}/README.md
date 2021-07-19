@@ -10,7 +10,7 @@
 
 - [Go - 1.16](https://golang.org/doc/go1.16) or newer
 
-{% if cookiecutter.web_variant == "y" %}- [Node - 14](https://nodejs.org/en/){% endif %}
+{% if cookiecutter.web_variant == "yes" %}- [Node - 14](https://nodejs.org/en/){% endif %}
 
 ### Development
 
@@ -26,7 +26,7 @@ To start the development server, `.env` file must be created.
 
 - [`goose`](https://github.com/pressly/goose) is used for database migration.
 
-{% if cookiecutter.web_variant == "y" %}- [`forego`](https://github.com/ddollar/forego) manages Procfile-based applications.{% endif %}
+{% if cookiecutter.web_variant == "yes" %}- [`forego`](https://github.com/ddollar/forego) manages Procfile-based applications.{% endif %}
 
 They need to be built as a binary file in `$GOPATH`.
 
