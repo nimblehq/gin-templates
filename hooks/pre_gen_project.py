@@ -14,4 +14,15 @@ API Variant
 {% if cookiecutter.variant in ['API only', 'Both'] %}
     {{ cookiecutter.update({ '_api_variant': 'yes' }) }}
 {% endif %}
+
+-----------
+CSS Addons
+cookiecutter._bootstrap_addon
+-----------
+Only project with web:
+{% if cookiecutter._web_variant == 'yes' %}
+    {% if cookiecutter.css_addon == 'Bootstrap' %}
+        {{ cookiecutter.update({ '_bootstrap_addon': 'yes' }) }}
+    {% endif %}
+{% endif %}
 '''

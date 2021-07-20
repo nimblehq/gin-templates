@@ -54,6 +54,11 @@ if '{{ cookiecutter.use_heroku }}'.lower() == 'no':
     remove_files("deploy/heroku")
     remove_file(".github/workflows/deploy.yml")
 
+# Remove bootstrap add-on if not seleted
+if '{{ cookiecutter._bootstrap_addon }}' == 'no':
+    print_log('Removing bootstrap add-on')
+    remove_files("lib/web/assets/stylesheets/vendors/bootstrap")
+
 # Remove web variant if not selected
 if '{{ cookiecutter._web_variant }}' == 'no':
     print_log('Removing web variant related files')
