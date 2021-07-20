@@ -8,6 +8,7 @@ import (
 
 type Choices string
 type Variants string
+type CssAddons string
 
 const (
 	Yes Choices = "1"
@@ -16,12 +17,16 @@ const (
 	API  Variants = "1"
 	Web  Variants = "2"
 	Both Variants = "3"
+
+	Bootstrap CssAddons = "1"
+	None      CssAddons = "2"
 )
 
 // Field and order MUST be the same as cookiecutter.json
 type Cookiecutter struct {
 	AppName   string
 	Variant   Variants
+	CssAddon  CssAddons
 	UseLogrus Choices
 	UseHeroku Choices
 }
@@ -37,6 +42,10 @@ func (c *Cookiecutter) fillDefaultValue() {
 
 	if c.UseHeroku != Yes && c.UseHeroku != No {
 		c.UseHeroku = No
+	}
+
+	if c.CssAddon != Bootstrap && c.CssAddon != None {
+		c.CssAddon = None
 	}
 
 	if c.Variant != API && c.Variant != Web && c.Variant != Both {
