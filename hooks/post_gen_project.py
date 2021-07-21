@@ -37,6 +37,6 @@ os.system("go fmt ./...")
 
 # # Use this snippet to remove files/folders based on
 # # cookiecutter.variables (cf pre_gen_project.py hook)
-# if '{{ cookiecutter._web_variant }}' == 'n':
+# if '{{ cookiecutter._web_variant }}' == 'no':
 #     print_log('Removing web variant related files')
 #     remove_files('/path/to/remove')
