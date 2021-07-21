@@ -5,7 +5,5 @@
   "use_heroku": ["yes", "no"],
 
   "_api_variant": "no",
-  "_web_variant": "no",
-  "_bootstrap_addon": "no",
-  "_tailwinds_addon": "no"
+  "_web_variant": "no"
 }
