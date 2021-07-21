@@ -2,10 +2,7 @@
   "app_name": "default-app-name",
   "use_logrus": ["yes", "no"],
   "variant": ["API only", "Web only", "Both"],
-  "css_addon": ["None", "Bootstrap", "Tailwinds"],
 
   "_api_variant": "no",
-  "_web_variant": "no",
-  "_bootstrap_addon": "no",
-  "_tailwinds_addon": "no"
+  "_web_variant": "no"
 }
