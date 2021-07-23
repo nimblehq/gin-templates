@@ -534,4 +534,266 @@ var _ = Describe("Create template", func() {
 			Expect(content).NotTo(ContainSubstring(expectedContent))
 		})
 	})
+
+	Context("given Web variant", func() {
+		It("contains lib/web folder", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.Web,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("lib/web")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains .eslintrc.json file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.Web,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat(".eslintrc.json")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains .npmrc file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.Web,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat(".npmrc")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains package.json file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.Web,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("package.json")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains snowpack.config.js file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.Web,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("snowpack.config.js")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains postcss.config.js file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.Web,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("postcss.config.js")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains tsconfig.json file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.Web,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("tsconfig.json")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains snowpack: npm run dev in Procfile.dev", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.Web,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("Procfile.dev")
+
+			expectedContent := "snowpack: npm run dev"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+
+		It("contains the webrouter import in bootstrap/router.go", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.Web,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("bootstrap/router.go")
+
+			expectedContent := "webrouter \"github.com/nimblehq/test-gin-templates/lib/web/routers\""
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+
+		It("contains npm install in Makefile", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.Web,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("Makefile")
+
+			expectedContent := "npm install"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+
+		It("contains Node 14 in README.md", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.Web,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("README.md")
+
+			expectedContent := "[Node - 14](https://nodejs.org/en/)"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+	})
+
+	Context("given NO Web variant", func() {
+		It("does NOT contain lib/web folder", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.API,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("lib/web")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contain .eslintrc.json file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.API,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat(".eslintrc.json")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contain .npmrc file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.API,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat(".npmrc")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contain package.json file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.API,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("package.json")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contain snowpack.config.js file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.API,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("snowpack.config.js")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contain postcss.config.js file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.API,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("postcss.config.js")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contain tsconfig.json file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.API,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("tsconfig.json")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contain snowpack: npm run dev in Procfile.dev", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.API,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("Procfile.dev")
+
+			expectedContent := "snowpack: npm run dev"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+
+		It("does NOT contain the webrouter import in bootstrap/router.go", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.API,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("bootstrap/router.go")
+
+			expectedContent := "webrouter \"github.com/nimblehq/test-gin-templates/lib/web/routers\""
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+
+		It("does NOT contain npm install in Makefile", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.API,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("Makefile")
+
+			expectedContent := "npm install"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+
+		It("does NOT contain Node 14 in README.md", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+				Variant: tests.API,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("README.md")
+
+			expectedContent := "[Node - 14](https://nodejs.org/en/)"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+	})
 })
