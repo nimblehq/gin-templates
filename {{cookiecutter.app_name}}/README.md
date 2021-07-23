@@ -26,7 +26,7 @@ To start the development server, `.env` file must be created.
 
 - [`goose`](https://github.com/pressly/goose) is used for database migration.
 
-{% if cookiecutter._web_variant == "yes" %}- [`forego`](https://github.com/ddollar/forego) manages Procfile-based applications.{% endif %}
+- [`forego`](https://github.com/ddollar/forego) manages Procfile-based applications.
 
 They need to be built as a binary file in `$GOPATH`.
 
