@@ -14,3 +14,4 @@ API Variant
 {% if cookiecutter.variant in ['API only', 'Both'] %}
     {{ cookiecutter.update({ '_api_variant': 'yes' }) }}
 {% endif %}
+'''
