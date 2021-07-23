@@ -1,2 +1,10 @@
 tmp/
 .env
+
+{%- if cookiecutter.use_heroku == "yes" %}
+# Terraform generated files
+deploy/**/.terraform/
+deploy/**/terraform.tfstate
+deploy/**/terraform.tfstate.backup
+deploy/**/*.tfvars
+{%- endif %}

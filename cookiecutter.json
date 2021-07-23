@@ -1,4 +1,5 @@
 {
   "app_name": "default-app-name",
-  "use_logrus": ["yes", "no"]
+  "use_logrus": ["yes", "no"],
+  "use_heroku": ["yes", "no"]
 }
