@@ -21,6 +21,7 @@
     "eslint-plugin-prettier": "3.4.0",
     "postcss": "8.3.5",
     "prettier": "2.3.2",
-    "snowpack": "3.7.1"
+    "snowpack": "3.7.1"{% if cookiecutter._tailwind_addon == "yes" %},
+    "tailwindcss": "2.2.7"{% endif %}
   }
 }

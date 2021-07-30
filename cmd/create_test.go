@@ -874,4 +874,130 @@ var _ = Describe("Create template", func() {
 			Expect(content).NotTo(ContainSubstring(expectedContent))
 		})
 	})
+
+	Context("given tailwind add-on", func() {
+		It("contains lib/web/assets/stylesheets/vendors/tailwind folder", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.Tailwind,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("lib/web/assets/stylesheets/vendors/tailwind")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains tailwind.config.js file", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.Tailwind,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("tailwind.config.js")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains tailwind package in package.json", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.Tailwind,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("package.json")
+
+			expectedContent := "\"tailwindcss\": \"2.2.7\""
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+
+		It("contains tailwind scss import in lib/web/assets/stylesheets/application.scss", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.Tailwind,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("lib/web/assets/stylesheets/application.scss")
+
+			expectedContent := "@import \"./vendors/tailwind\";"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+
+		It("contains tailwind requirement in postcss.config.js", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.Tailwind,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("postcss.config.js")
+
+			expectedContent := "require(\"tailwindcss\")"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+	})
+
+	Context("given NO tailwind add-on", func() {
+		It("does NOT contain lib/web/assets/stylesheets/vendors/tailwind folder", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.None,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("lib/web/assets/stylesheets/vendors/tailwind")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contain tailwind.config.js file", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.None,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("tailwind.config.js")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contain tailwind package in package.json", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.None,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("package.json")
+
+			expectedContent := "\"tailwindcss\":"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+
+		It("does NOT contain tailwind scss import in lib/web/assets/stylesheets/application.scss", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.None,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("lib/web/assets/stylesheets/application.scss")
+
+			expectedContent := "@import \"./vendors/tailwind\";"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+
+		It("does NOT contain tailwind requirement in postcss.config.js", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.None,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("postcss.config.js")
+
+			expectedContent := "require(\"tailwindcss\")"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+	})
 })

@@ -1,11 +1,12 @@
 {
   "app_name": "default-app-name",
   "variant": ["API only", "Web only", "Both"],
-  "css_addon": ["Bootstrap", "None"],
+  "css_addon": ["Bootstrap", "Tailwind", "None"],
   "use_logrus": ["yes", "no"],
   "use_heroku": ["yes", "no"],
 
   "_api_variant": "no",
   "_web_variant": "no",
-  "_bootstrap_addon": "no"
+  "_bootstrap_addon": "no",
+  "_tailwind_addon": "no"
 }

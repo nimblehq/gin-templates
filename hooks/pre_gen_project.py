@@ -18,11 +18,14 @@ API Variant
 -----------
 CSS Addons
 cookiecutter._bootstrap_addon
+cookiecutter._tailwind_addon
 -----------
 Only project with web:
 {% if cookiecutter._web_variant == 'yes' %}
     {% if cookiecutter.css_addon == 'Bootstrap' %}
         {{ cookiecutter.update({ '_bootstrap_addon': 'yes' }) }}
+    {% elif cookiecutter.css_addon == 'Tailwind' %}
+        {{ cookiecutter.update({ '_tailwind_addon': 'yes' }) }}
     {% endif %}
 {% endif %}
 '''

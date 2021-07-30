@@ -2,8 +2,8 @@
 @import './variables';
 
 // Vendors
-{% if cookiecutter._bootstrap_addon == "yes" %}@import "./vendors/bootstrap";
-{% endif %}
+{% if cookiecutter._bootstrap_addon == "yes" %}@import "./vendors/bootstrap";{% endif %}{% if cookiecutter._tailwind_addon == "yes" %}@import "./vendors/tailwind";{% endif %}
+
 // Functions
 @import './functions/sizing';
 

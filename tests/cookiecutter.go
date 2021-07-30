@@ -19,7 +19,8 @@ const (
 	Both Variants = "3"
 
 	Bootstrap CssAddons = "1"
-	None      CssAddons = "2"
+	Tailwind  CssAddons = "2"
+	None      CssAddons = "3"
 )
 
 // Field and order MUST be the same as cookiecutter.json
@@ -44,7 +45,7 @@ func (c *Cookiecutter) fillDefaultValue() {
 		c.UseHeroku = No
 	}
 
-	if c.CssAddon != Bootstrap && c.CssAddon != None {
+	if c.CssAddon != Bootstrap && c.CssAddon != Tailwind && c.CssAddon != None {
 		c.CssAddon = None
 	}
 
