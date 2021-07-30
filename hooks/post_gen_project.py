@@ -4,30 +4,30 @@ import shutil
 # Get the root project directory
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
-# Removes log helper folder
-def remove_logrus_files():
+def remove_files(path):
+    """
+    Removes files in path
+    """
     shutil.rmtree(os.path.join(
-        PROJECT_DIRECTORY, "helpers/log"
+        PROJECT_DIRECTORY, path
+    ))
+
+def remove_file(path):
+    """
+    Removes file with path
+    """
+    os.remove(os.path.join(
+        PROJECT_DIRECTORY, path
     ))
 
 # Print log with color
 def print_log(message):
+    """
+    Print log with color
+    """
     CYELLOW = '\33[33m'  # YELLOW color
     CEND = '\033[0m'  # END color
     print(CYELLOW + message + CEND)
-
-
-def remove_heroku_files():
-    """
-    Removes heroku related files
-    """
-    shutil.rmtree(os.path.join(
-        PROJECT_DIRECTORY, "deploy/heroku"
-    ))
-    os.remove(os.path.join(
-        PROJECT_DIRECTORY, ".github/workflows/deploy.yml"
-    ))
-
 
 def remove_empty_folders():
     """
@@ -44,12 +44,30 @@ def remove_empty_folders():
 # Remove logrus add-on if not seleted
 if '{{ cookiecutter.use_logrus }}'.lower() == 'no':
     print_log('Removing logrus add-on')
-    remove_logrus_files()
+
+    remove_files("helpers/log")
 
 # Remove heroku add-on if not seleted
 if '{{ cookiecutter.use_heroku }}'.lower() == 'no':
     print_log('Removing heroku add-on')
-    remove_heroku_files()
+
+    remove_files("deploy/heroku")
+    remove_file(".github/workflows/deploy.yml")
+
+# Remove web variant if not selected
+if '{{ cookiecutter._web_variant }}' == 'no':
+    print_log('Removing web variant related files')
+
+    # Web folder
+    remove_files('lib/web')
+    
+    # Config files
+    remove_file('.eslintrc.json')
+    remove_file('.npmrc')
+    remove_file('package.json')
+    remove_file('snowpack.config.js')
+    remove_file('postcss.config.js')
+    remove_file('tsconfig.json')
 
 # Download the missing dependencies
 print_log('Downloading dependencies')

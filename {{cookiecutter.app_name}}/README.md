@@ -10,6 +10,8 @@
 
 - [Go - 1.16](https://golang.org/doc/go1.16) or newer
 
+{% if cookiecutter._web_variant == "yes" %}- [Node - 14](https://nodejs.org/en/){% endif %}
+
 ### Development
 
 #### Create an ENV file
@@ -22,7 +24,9 @@ To start the development server, `.env` file must be created.
 
 - [`air`](https://github.com/cosmtrek/air) is used for live reloading
 
-- [`goose`](https://github.com/pressly/goose) is used for database migration. 
+- [`goose`](https://github.com/pressly/goose) is used for database migration.
+
+- [`forego`](https://github.com/ddollar/forego) manages Procfile-based applications.
 
 They need to be built as a binary file in `$GOPATH`.
 
