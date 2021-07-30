@@ -796,4 +796,82 @@ var _ = Describe("Create template", func() {
 			Expect(content).NotTo(ContainSubstring(expectedContent))
 		})
 	})
+
+	Context("given bootstrap add-on", func() {
+		It("contains lib/web/assets/stylesheets/vendors/bootstrap folder", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.Bootstrap,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("lib/web/assets/stylesheets/vendors/bootstrap")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains bootstrap package in package.json", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.Bootstrap,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("package.json")
+
+			expectedContent := "\"bootstrap\": \"5.0.2\""
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+
+		It("contains bootstrap scss import in lib/web/assets/stylesheets/application.scss", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.Bootstrap,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("lib/web/assets/stylesheets/application.scss")
+
+			expectedContent := "@import \"./vendors/bootstrap\";"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+	})
+
+	Context("given NO bootstrap add-on", func() {
+		It("does NOT contain lib/web/assets/stylesheets/vendors/bootstrap folder", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.None,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("lib/web/assets/stylesheets/vendors/bootstrap")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contain bootstrap package in package.json", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.None,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("package.json")
+
+			expectedContent := "\"bootstrap\":"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+
+		It("does NOT contain bootstrap scss import in lib/web/assets/stylesheets/application.scss", func() {
+			cookiecutter := tests.Cookiecutter{
+				Variant:  tests.Web,
+				CssAddon: tests.None,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("lib/web/assets/stylesheets/application.scss")
+
+			expectedContent := "@import \"./vendors/bootstrap\";"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+	})
 })
