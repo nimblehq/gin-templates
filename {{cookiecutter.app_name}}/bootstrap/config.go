@@ -1,8 +1,10 @@
 package bootstrap
 
 import (
-	"log"
-
+	{% if cookiecutter.use_logrus == "no" %}"log"
+	{% endif %}
+	{% if cookiecutter.use_logrus == "yes" %}"github.com/nimblehq/{{cookiecutter.app_name}}/helpers/log"
+	{% endif %}
 	"github.com/spf13/viper"
 )
 

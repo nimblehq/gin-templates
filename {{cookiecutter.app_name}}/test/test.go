@@ -1,12 +1,13 @@
 package test
 
 import (
-	"log"
 	"os"
 	"path/filepath"
 	"runtime"
+	{% if cookiecutter.use_logrus == "no" %}"log"{% endif %}
 
 	"github.com/nimblehq/{{cookiecutter.app_name}}/bootstrap"
+	{% if cookiecutter.use_logrus == "yes" %}"github.com/nimblehq/{{cookiecutter.app_name}}/helpers/log"{% endif %}
 
 	"github.com/gin-gonic/gin"
 )
@@ -21,8 +22,6 @@ func SetupTestEnvironment() {
 	bootstrap.LoadConfig()
 
 	bootstrap.InitDatabase()
-
-	Router = bootstrap.SetupRouter()
 }
 
 func setRootDir() {

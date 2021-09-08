@@ -45,8 +45,6 @@ Check this [wiki](https://github.com/nimblehq/gin-templates/wiki/Directories) fo
 
 ## Test
 
-- Execute all unit tests. Note that the **main** branch is being used by default. Refer to [this wiki page](https://github.com/nimblehq/gin-templates/wiki/Commands) for instructions on how to use a different branch.
-
 ```sh
 make test
 ```

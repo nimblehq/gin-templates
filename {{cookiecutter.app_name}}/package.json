@@ -1,0 +1,27 @@
+{
+  "name": "{{cookiecutter.app_name}}",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [],
+  "author": "NimbleHQ",
+  "license": "MIT",
+  "scripts": {
+    "dev": "NODE_ENV=development MODE=development snowpack build --watch --no-minify --no-bundle",
+    "build": "snowpack build",
+    "clean": "rm -rf static"
+  },
+  "devDependencies": {
+    "@snowpack/plugin-postcss": "1.4.3",
+    "@snowpack/plugin-sass": "1.4.0",
+    "@types/node": "15.12.5",
+    "autoprefixer": "10.2.6",{% if cookiecutter._bootstrap_addon == "yes" %}
+    "bootstrap": "5.0.2",{% endif %}
+    "eslint": "7.29.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-prettier": "3.4.0",
+    "postcss": "8.3.5",
+    "prettier": "2.3.2",
+    "snowpack": "3.7.1"{% if cookiecutter._tailwind_addon == "yes" %},
+    "tailwindcss": "2.2.7"{% endif %}
+  }
+}
