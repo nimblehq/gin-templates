@@ -2,11 +2,15 @@
   "app_name": "default-app-name",
   "variant": ["API only", "Web only", "Both"],
   "css_addon": ["Bootstrap", "Tailwind", "None"],
+  "repository_addon": ["GitHub", "GitLab", "None"],
   "use_logrus": ["yes", "no"],
   "use_heroku": ["yes", "no"],
 
   "_api_variant": "no",
   "_web_variant": "no",
   "_bootstrap_addon": "no",
-  "_tailwind_addon": "no"
+  "_tailwind_addon": "no",
+  "_github_addon": "no",
+  "_gitlab_addon": "no",
+  "_gitignore_addon": "yes"
 }

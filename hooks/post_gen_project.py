@@ -65,6 +65,21 @@ if '{{ cookiecutter._tailwind_addon }}' == 'no':
     remove_files("lib/web/assets/stylesheets/vendors/tailwind")
     remove_file("tailwind.config.js")
 
+# Remove github repository add-on if not seleted
+if '{{ cookiecutter._github_addon }}' == 'no':
+    print_log('Removing github repository add-on')
+    remove_files(".github")
+
+# Remove gitlab repository add-on if not seleted
+if '{{ cookiecutter._gitlab_addon }}' == 'no':
+    print_log('Removing gitlab repository add-on')
+    remove_files(".gitlab")
+
+# Remove .gitignore if not seleted any repository options
+if '{{ cookiecutter._gitignore_addon }}' == 'no':
+    print_log('Removing .gitignore')
+    remove_file("tailwind.config.js")
+
 # Remove web variant if not selected
 if '{{ cookiecutter._web_variant }}' == 'no':
     print_log('Removing web variant related files')

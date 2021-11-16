@@ -1,4 +1,4 @@
-https://github.com/nimblehq/git-template/issues/??
+https://project-management-tool/browse/??
 
 ## What happened 👀
 

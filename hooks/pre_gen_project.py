@@ -28,4 +28,18 @@ Only project with web:
         {{ cookiecutter.update({ '_tailwind_addon': 'yes' }) }}
     {% endif %}
 {% endif %}
+
+-----------
+Repository Addons
+cookiecutter._github_addon
+cookiecutter._gitlab_addon
+cookiecutter._gitignore_addon
+-----------
+{% if cookiecutter.repository_addon == 'GitHub' %}
+    {{ cookiecutter.update({ '_github_addon': 'yes' }) }}
+{% elif cookiecutter.repository_addon == 'GitLab' %}
+    {{ cookiecutter.update({ '_gitlab_addon': 'yes' }) }}
+{% elif cookiecutter.repository_addon == 'None' %}
+    {{ cookiecutter.update({ '_gitignore_addon': 'no' }) }}
+{% endif %}
 '''
