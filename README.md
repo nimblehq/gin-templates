@@ -8,7 +8,7 @@
 
 ---
 
-Our templates offer a rich boilerplate to jump start Go Gin-based application development.
+Our templates offer a rich boilerplate to jump start Go [Gin-based](https://github.com/gin-gonic/gin) application development.
 
 Check this [wiki](https://github.com/nimblehq/gin-templates/wiki/Directories) for more information about the template structure.
 
@@ -25,16 +25,19 @@ Check this [wiki](https://github.com/nimblehq/gin-templates/wiki/Directories) fo
 ## Usage
 
 - Download **latest** version of gin-templates.
+
   ```
   go get github.com/nimblehq/gin-templates
   ```
 
 - Build the binary file.
+
   ```
   go build -o $GOPATH/bin/nimble-gin github.com/nimblehq/gin-templates
   ```
 
 - Create the project using gin-templates. Note that the **main** branch is being used by default. Refer to [this wiki page](https://github.com/nimblehq/gin-templates/wiki/Commands) for instructions on how to use a different branch.
+
   ```
   nimble-gin create
   ```
@@ -54,7 +57,7 @@ make test
 This project is Copyright (c) 2014 and onwards Nimble. It is free software,
 and may be redistributed under the terms specified in the [LICENSE] file.
 
-[LICENSE]: /LICENSE
+[license]: /LICENSE
 
 ## About
 
