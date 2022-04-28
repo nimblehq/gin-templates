@@ -18,9 +18,9 @@ jobs:
         run: sudo -H python3 -m pip install cookiecutter
 
       - name: Setup Go environment
-        uses: actions/setup-go@v2.1.3
+        uses: actions/setup-go@v3
         with:
-          go-version: 1.16.x
+          go-version: 1.18.x
 
       - name: Linters
         uses: golangci/golangci-lint-action@v3
