@@ -18,9 +18,9 @@ jobs:
         run: cp ".env.example" ".env"
 
       - name: Run linters
-        uses: golangci/golangci-lint-action@v2
+        uses: golangci/golangci-lint-action@v3
         with:
-          version: v1.29
+          version: v1.45
 
       - name: Install dependencies
         run: make install-dependencies
