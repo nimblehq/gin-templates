@@ -1,4 +1,4 @@
-https://github.com/nimblehq/git-template/issues/??
+Resolve https://github.com/nimblehq/gin-templates/issues/??
 
 ## What happened 👀
 
