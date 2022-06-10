@@ -1,8 +1,10 @@
 import os
 import shutil
+import subprocess
 
 # Get the root project directory
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
+
 
 def remove_files(path):
     """
@@ -11,6 +13,7 @@ def remove_files(path):
     shutil.rmtree(os.path.join(
         PROJECT_DIRECTORY, path
     ))
+
 
 def remove_file(path):
     """
@@ -21,6 +24,8 @@ def remove_file(path):
     ))
 
 # Print log with color
+
+
 def print_log(message):
     """
     Print log with color
@@ -28,6 +33,7 @@ def print_log(message):
     CYELLOW = '\33[33m'  # YELLOW color
     CEND = '\033[0m'  # END color
     print(CYELLOW + message + CEND)
+
 
 def remove_empty_folders():
     """
@@ -39,6 +45,17 @@ def remove_empty_folders():
                 if (len(os.listdir(os.path.join(root, dir))) == 0):
                     print_log(f'Removing {dir} folder')
                     os.rmdir(os.path.join(root, dir))
+
+
+def init_git(message):
+    """
+    Initialize git repository
+    """
+    print_log(message)
+    subprocess.call(['git', 'init'])
+    subprocess.call(['git', 'add', '*'])
+    subprocess.call(
+        ['git', 'commit', '-m', 'Initialize project using gin-templates'])
 
 
 # Remove logrus add-on if not seleted
@@ -71,7 +88,7 @@ if '{{ cookiecutter._web_variant }}' == 'no':
 
     # Web folder
     remove_files('lib/web')
-    
+
     # Config files
     remove_file('.eslintrc.json')
     remove_file('.npmrc')
@@ -82,11 +99,14 @@ if '{{ cookiecutter._web_variant }}' == 'no':
 
 # Download the missing dependencies
 print_log('Downloading dependencies')
-os.system("go mod tidy")
+subprocess.call(['go', 'mod', 'tidy'])
 
 # Format code
 print_log('Formating code')
-os.system("go fmt ./...")
+subprocess.call(['go', 'fmt', './...'])
 
 # Remove empty folders
 remove_empty_folders()
+
+# Initialize git
+init_git('Initializing git repository')
