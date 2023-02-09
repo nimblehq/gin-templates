@@ -11,7 +11,9 @@ Provide the ID and title of the issue in the section for each type (feature, cho
 - [[ch1234](https://github.com/nimblehq/git-templates/issues/1234)] As a user, I can log in
 
 ## Chores
+
 - Same structure as in  ## Feature
 
 ## Bugs
+
 - Same structure as in  ## Feature
