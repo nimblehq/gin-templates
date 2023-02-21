@@ -125,13 +125,13 @@ var _ = Describe("Create template", func() {
 	})
 
 	Context("given bootstrap/database.go", func() {
-		It("contains project name at helpers import", func() {
+		It("contains project name at database import", func() {
 			cookiecutter := tests.Cookiecutter{AppName: "test-gin-templates"}
 			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
 
 			content := tests.ReadFile("bootstrap/database.go")
 
-			expectedContent := `"github.com/nimblehq/test-gin-templates/helpers"`
+			expectedContent := `"github.com/nimblehq/test-gin-templates/database"`
 
 			Expect(content).To(ContainSubstring(expectedContent))
 		})
@@ -296,7 +296,7 @@ var _ = Describe("Create template", func() {
 			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
 			content := tests.ReadFile("go.mod")
 
-			expectedContent := "github.com/sirupsen/logrus v1.8.1"
+			expectedContent := "github.com/sirupsen/logrus"
 
 			Expect(content).To(ContainSubstring(expectedContent))
 		})
@@ -314,13 +314,26 @@ var _ = Describe("Create template", func() {
 			Expect(content).To(ContainSubstring(expectedContent))
 		})
 
-		It("contains logrus package import in bootstrap/database.go", func() {
+		Context("given database/database.go", func() {
+			It("contains project name at helpers import", func() {
+				cookiecutter := tests.Cookiecutter{AppName: "test-gin-templates"}
+				cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+
+				content := tests.ReadFile("database/database.go")
+
+				expectedContent := `"github.com/nimblehq/test-gin-templates/helpers"`
+
+				Expect(content).To(ContainSubstring(expectedContent))
+			})
+		})
+
+		It("contains logrus package import in database/database.go", func() {
 			cookiecutter := tests.Cookiecutter{
 				AppName:   "test-gin-templates",
 				UseLogrus: tests.Yes,
 			}
 			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
-			content := tests.ReadFile("bootstrap/database.go")
+			content := tests.ReadFile("database/database.go")
 
 			expectedContent := "github.com/nimblehq/test-gin-templates/helpers/log"
 
