@@ -26,19 +26,19 @@ Check this [wiki](https://github.com/nimblehq/gin-templates/wiki/Directories) fo
 
 - Download **latest** version of gin-templates.
 
-  ```
+  ```sh
   go get github.com/nimblehq/gin-templates
   ```
 
 - Build the binary file.
 
-  ```
+  ```sh
   go build -o $GOPATH/bin/nimble-gin github.com/nimblehq/gin-templates
   ```
 
 - Create the project using gin-templates. Note that the **main** branch is being used by default. Refer to [this wiki page](https://github.com/nimblehq/gin-templates/wiki/Commands) for instructions on how to use a different branch.
 
-  ```
+  ```sh
   nimble-gin create
   ```
 
