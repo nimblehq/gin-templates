@@ -1,13 +1,13 @@
 package tests
 
 import (
-	"io/ioutil"
+	"os"
 
 	. "github.com/onsi/ginkgo"
 )
 
 func ReadFile(filename string) string {
-	content, err := ioutil.ReadFile(filename)
+	content, err := os.ReadFile(filename)
 	if err != nil {
 		Fail("Failed to read file: " + err.Error())
 	}
