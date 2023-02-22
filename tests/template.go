@@ -16,7 +16,6 @@ func (c Cookiecutter) CreateProjectFromGinTemplate(currentTemplatePath string) {
 	}
 
 	go func() {
-		defer GinkgoRecover()
 		defer stdin.Close()
 
 		_, err = io.WriteString(stdin, c.structToString())
