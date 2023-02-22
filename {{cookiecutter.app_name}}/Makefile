@@ -43,8 +43,15 @@ install-dependencies:
 test:
 	docker-compose -f docker-compose.test.yml up -d
 	ENV=test make db/migrate
-	go test -v -p 1 -count=1 ./...
+	go test -v -p 1 -count=1 ./... -coverprofile=coverage/coverage.out
 	docker-compose -f docker-compose.test.yml down
+
+coverage:
+	go tool cover -html=coverage/coverage.out -o coverage/coverage.html
+	go tool cover -func=coverage/coverage.out
+
+coverage-check: coverage
+	./bin/check-coverage.sh
 
 wait-for-postgres:
 	$(shell DATABASE_URL=$(DATABASE_URL) ./bin/wait-for-postgres.sh)
