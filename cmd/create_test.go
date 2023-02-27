@@ -1,7 +1,6 @@
 package cmd_test
 
 import (
-	"io/ioutil"
 	"os"
 
 	"github.com/nimblehq/gin-templates/tests"
@@ -450,7 +449,7 @@ var _ = Describe("Create template", func() {
 				UseHeroku: tests.Yes,
 			}
 			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
-			files, err := ioutil.ReadDir("deploy/heroku")
+			files, err := os.ReadDir("deploy/heroku")
 			if err != nil {
 				Fail("Failed to read directory: " + err.Error())
 			}

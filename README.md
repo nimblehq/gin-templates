@@ -20,7 +20,7 @@ Check this [wiki](https://github.com/nimblehq/gin-templates/wiki/Directories) fo
 - Cookiecutter
   - Mac: `brew install cookiecutter`
   - Debian/Ubuntu: `sudo apt-get install cookiecutter`
-- Go version >= 1.18
+- Go version >= 1.20
 
 ## Usage
 

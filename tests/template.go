@@ -17,6 +17,7 @@ func (c Cookiecutter) CreateProjectFromGinTemplate(currentTemplatePath string) {
 
 	go func() {
 		defer stdin.Close()
+
 		_, err = io.WriteString(stdin, c.structToString())
 		if err != nil {
 			Fail("Failed to write std value to file: " + err.Error())
