@@ -43,7 +43,7 @@ install-dependencies:
 test:
 	docker-compose -f docker-compose.test.yml up -d
 	ENV=test make db/migrate
-	go test -v -p 1 -count=1 ./... -coverprofile=coverage/coverage.out
+	go test -v -p 1 -count=1 ./... -coverprofile=coverage/coverage.out -ginkgo.reportFile=coverage/test-report.xml
 	docker-compose -f docker-compose.test.yml down
 
 coverage:
