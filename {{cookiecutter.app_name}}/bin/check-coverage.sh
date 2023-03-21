@@ -8,13 +8,16 @@
 # grep total to get the line start with `total` which contain the overall coverage percentage
 # awk '{print substr($3, 1, length($3)-1)}' with the built-in variable `$3` to grab the 3rd part after the line is splited with space and substr to remove the %
 # which will result in 100.0
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+
 coverage=$(go tool cover -func coverage/coverage.out | grep total | awk '{print substr($3, 1, length($3)-1)}')
 expected=100
 
 if [ "$(echo $coverage '<' $expected | bc -l)" -eq 1 ]; then\
-  echo "coverage percentage is too low ${coverage}%, the expected percentage is ${expected}%"
+  echo "${RED}Coverage percentage is too low ${coverage}%, the expected percentage is ${expected}%"
   exit 1
 else\
-  echo "coverage percentage meet expectation ${coverage}%"
+  echo "${GREEN}Coverage percentage meet expectation ${coverage}%"
   exit 0
 fi;
