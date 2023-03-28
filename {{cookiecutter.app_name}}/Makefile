@@ -34,15 +34,15 @@ dev:
 	forego start -f Procfile.dev
 
 install-dependencies:
-	go get github.com/cosmtrek/air@v1.15.1
-	go get github.com/pressly/goose/cmd/goose
-	go get github.com/ddollar/forego
+	go install github.com/cosmtrek/air@v1.41.1
+	go install github.com/pressly/goose/v3/cmd/goose@v3.9.0
+	go install github.com/ddollar/forego@latest
 	go mod tidy
 	{% if cookiecutter._web_variant == "yes" %}npm install{% endif %}
 
 test:
 	docker-compose -f docker-compose.test.yml up -d
-	ENV=test make db/migrate
+	make wait-for-postgres
 	go test -v -p 1 -count=1 ./...
 	docker-compose -f docker-compose.test.yml down
 
