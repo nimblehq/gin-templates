@@ -12,9 +12,7 @@ import (
 )
 
 func main() {
-	bootstrap.LoadConfig()
-
-	bootstrap.InitDatabase()
+	bootstrap.Init()
 
 	r := bootstrap.SetupRouter()
 

@@ -8,7 +8,7 @@
 
 ### Prerequisites
 
-- [Go - 1.16](https://golang.org/doc/go1.16) or newer
+- [Go - 1.20](https://golang.org/doc/go1.20) or newer
 
 {% if cookiecutter._web_variant == "yes" %}- [Node - 14](https://nodejs.org/en/){% endif %}
 
