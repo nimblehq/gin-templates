@@ -5,7 +5,6 @@ import subprocess
 # Get the root project directory
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
-
 def remove_files(path):
     """
     Removes files in path
@@ -13,7 +12,6 @@ def remove_files(path):
     shutil.rmtree(os.path.join(
         PROJECT_DIRECTORY, path
     ))
-
 
 def remove_file(path):
     """
@@ -24,8 +22,6 @@ def remove_file(path):
     ))
 
 # Print log with color
-
-
 def print_log(message):
     """
     Print log with color
@@ -33,7 +29,6 @@ def print_log(message):
     CYELLOW = '\33[33m'  # YELLOW color
     CEND = '\033[0m'  # END color
     print(CYELLOW + message + CEND)
-
 
 def remove_empty_folders():
     """
@@ -46,6 +41,12 @@ def remove_empty_folders():
                     print_log(f'Removing {dir} folder')
                     os.rmdir(os.path.join(root, dir))
 
+def ensure_coverage_check_script():
+    """
+    Ensure coverage check script is executable
+    """
+    print_log('Ensure coverage check is executable')
+    subprocess.call(['chmod', '+x', './bin/check-coverage.sh'])
 
 def init_git(message):
     """
@@ -56,7 +57,6 @@ def init_git(message):
     subprocess.call(['git', 'add', '*'])
     subprocess.call(
         ['git', 'commit', '-m', 'Initialize project using gin-templates'])
-
 
 # Remove logrus add-on if not seleted
 if '{{ cookiecutter.use_logrus }}'.lower() == 'no':
@@ -107,6 +107,9 @@ subprocess.call(['go', 'fmt', './...'])
 
 # Remove empty folders
 remove_empty_folders()
+
+# Ensure coverage check script is executable CI
+ensure_coverage_check_script()
 
 # Initialize git
 init_git('Initializing git repository')
