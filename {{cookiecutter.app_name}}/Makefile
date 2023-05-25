@@ -6,10 +6,10 @@ endif
 .PHONY: env-setup env-teardown db/migrate db/rollback migration/create migration/status dev install-dependencies test wait-for-postgres
 
 env-setup:
-	docker-compose -f docker-compose.dev.yml up -d
+	docker compose -f docker-compose.dev.yml up -d
 
 env-teardown:
-	docker-compose -f docker-compose.dev.yml down
+	docker compose -f docker-compose.dev.yml down
 
 db/migrate:
 	make wait-for-postgres
@@ -41,10 +41,10 @@ install-dependencies:
 	{% if cookiecutter._web_variant == "yes" %}npm install{% endif %}
 
 test:
-	docker-compose -f docker-compose.test.yml up -d
+	docker compose -f docker-compose.test.yml up -d
 	make wait-for-postgres
 	go test -v -p 1 -count=1 ./... -coverprofile=coverage/coverage.out -ginkgo.reportFile=coverage/test-report.xml
-	docker-compose -f docker-compose.test.yml down
+	docker compose -f docker-compose.test.yml down
 
 coverage:
 	go tool cover -html=coverage/coverage.out -o coverage/coverage.html
