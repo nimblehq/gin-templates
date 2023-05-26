@@ -52,6 +52,20 @@ Check this [wiki](https://github.com/nimblehq/gin-templates/wiki/Directories) fo
 make test
 ```
 
+## Development
+
+- Build the command with
+
+  ```sh
+  go build -o <PATH_TO_STORE_BUILD_FILE>
+  ```
+
+- Run the build file follow by the `create` command and the prompt to create a Go project should appear
+
+  ```sh
+  <PATH_TO_STORE_BUILD_FILE> create
+  ```
+
 ## License
 
 This project is Copyright (c) 2014 and onwards Nimble. It is free software,
