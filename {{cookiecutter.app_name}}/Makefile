@@ -34,7 +34,7 @@ dev:
 	forego start -f Procfile.dev
 
 install-dependencies:
-	go install github.com/cosmtrek/air@v1.41.1
+	go install github.com/cosmtrek/air@v1.43.0
 	go install github.com/pressly/goose/v3/cmd/goose@v3.9.0
 	go install github.com/ddollar/forego@latest
 	go mod tidy
