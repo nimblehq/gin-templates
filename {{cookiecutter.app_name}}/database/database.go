@@ -2,7 +2,6 @@ package database
 
 import (
 	"fmt"
-	"strings"
 	{% if cookiecutter.use_logrus == "no" %}"log"
 	{% endif %}
 
@@ -13,6 +12,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/pressly/goose/v3"
 	"github.com/spf13/viper"
+	"golang.org/x/text/cases"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -25,7 +25,8 @@ func InitDatabase(databaseURL string) {
 		log.Fatalf("Failed to connect to %v database: %v", gin.Mode(), err)
 	} else {
 		viper.Set("database", db)
-		log.Println(strings.Title(gin.Mode()) + " database connected successfully.")
+		caser := cases.Title(language.English)
+		log.Println(caser.String(gin.Mode()) + " database connected successfully.")
 	}
 
 	migrateDB(db)
