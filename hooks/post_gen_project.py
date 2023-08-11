@@ -111,6 +111,7 @@ if '{{ cookiecutter.use_openapi }}' == 'no':
     remove_file(".dockerignore")
     remove_file(".eslintignore")
     remove_file(".spectral.yaml")
+    remove_file(".github/workflows/lint_docs.yml")
 
 # Download the missing dependencies
 print_log('Downloading dependencies')
