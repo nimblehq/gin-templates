@@ -6,6 +6,7 @@ Web/API Variant
 cookiecutter._web_variant
 cookiecutter._api_variant
 cookiecutter._only_web_variant
+cookiecutter._both_variant
 -----------
 {% if cookiecutter.variant in ['Web only', 'Both'] %}
     {{ cookiecutter.update({ '_web_variant': 'yes' }) }}
@@ -15,9 +16,12 @@ cookiecutter._only_web_variant
     {{ cookiecutter.update({ '_only_web_variant': 'yes' }) }}
 {% endif %}
 
-API Variant
 {% if cookiecutter.variant in ['API only', 'Both'] %}
     {{ cookiecutter.update({ '_api_variant': 'yes' }) }}
+{% endif %}
+
+{% if cookiecutter.variant == 'Both' %}
+    {{ cookiecutter.update({ '_both_variant': 'yes' }) }}
 {% endif %}
 
 -----------
