@@ -9,7 +9,7 @@
     {%- if cookiecutter._web_variant == "yes" %}
     "dev": "NODE_ENV=development MODE=development snowpack build --watch --no-minify --no-bundle",
     "build": "snowpack build",
-    "clean": "rm -rf static",
+    "clean": "rm -rf static"{%- if cookiecutter.use_openapi == "yes" %},{%- endif %}
     {%- endif %}
     {%- if cookiecutter.use_openapi == "yes" %}
     "lint:docs:yml": "eslint docs/openapi --ext .yml --color",

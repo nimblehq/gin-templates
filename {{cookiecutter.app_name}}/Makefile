@@ -28,8 +28,10 @@ endif
 migration/status:
 	goose -dir database/migrations -table "migration_versions" postgres "$(DATABASE_URL)" status
 
-{% if cookiecutter.use_openapi == "yes" %}doc/generate:
-	npm run build:docs{% endif %}
+{%- if cookiecutter.use_openapi == "yes" %}
+doc/generate:
+	npm run build:docs
+{%- endif %}
 
 dev:
 	make env-setup
@@ -41,8 +43,8 @@ install-dependencies:
 	go install github.com/pressly/goose/v3/cmd/goose@v3.9.0
 	go install github.com/ddollar/forego@latest
 	go mod tidy
-	{% if cookiecutter._web_variant == "yes" %}npm install{% endif %}
-	{% if cookiecutter.use_openapi == "yes" %}make doc/generate{% endif %}
+	{%- if cookiecutter._web_variant == "yes" %}npm install{% endif %}
+	{%- if cookiecutter.use_openapi == "yes" %}make doc/generate{% endif %}
 
 test:
 	docker compose -f docker-compose.test.yml up -d
