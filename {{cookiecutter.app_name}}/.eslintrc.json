@@ -1,5 +1,4 @@
-{% if cookiecutter._web_variant == "yes" %}
-{
+{% if cookiecutter._web_variant == "yes" %}{
   "rules": {},
   "env": {
     "es6": true,
@@ -18,10 +17,7 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   }
-}
-{% endif %}
-{% if cookiecutter.use_openapi == "yes" %}
-{
+}{% endif %}{% if cookiecutter.use_openapi == "yes" %}{
   "extends": [
     "@nimblehq/eslint-config-nimble",
     "plugin:yml/recommended"
@@ -29,5 +25,4 @@
   "globals": {
     "I18n": true
   }
-}
-{% endif %}
+}{% endif %}
