@@ -32,7 +32,7 @@
     "postcss": "8.3.5",
     "prettier": "2.3.2",
     "snowpack": "3.7.1"{% if cookiecutter._tailwind_addon == "yes" %},
-    "tailwindcss": "2.2.7"{% endif %}
+    "tailwindcss": "2.2.7"{% endif %}{%- if cookiecutter.use_openapi == "yes" %},{%- endif %}
     {%- endif %}
     {%- if cookiecutter.use_openapi == "yes" %}
     "@apidevtools/swagger-cli": "4.0.4",

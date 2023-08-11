@@ -11,7 +11,9 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended"{% if cookiecutter.use_openapi == "yes" %},
+    "@nimblehq/eslint-config-nimble",
+    "plugin:yml/recommended"{% endif %}
   ],
   "globals": {
     "Atomics": "readonly",
@@ -21,8 +23,5 @@
   "extends": [
     "@nimblehq/eslint-config-nimble",
     "plugin:yml/recommended"
-  ],
-  "globals": {
-    "I18n": true
-  }
+  ]
 }{% endif %}

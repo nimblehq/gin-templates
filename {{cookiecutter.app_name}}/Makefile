@@ -28,8 +28,7 @@ endif
 migration/status:
 	goose -dir database/migrations -table "migration_versions" postgres "$(DATABASE_URL)" status
 
-{%- if cookiecutter.use_openapi == "yes" %}
-doc/generate:
+{% if cookiecutter.use_openapi == "yes" %}doc/generate:
 	npm run build:docs
 {%- endif %}
 
