@@ -1,0 +1,4 @@
+---
+
+responses_default_error:
+  $ref: "responses/default_error.yml"
