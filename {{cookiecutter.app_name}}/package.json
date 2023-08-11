@@ -14,8 +14,8 @@
     {%- if cookiecutter.use_openapi == "yes" %}
     "lint:docs:yml": "eslint docs/openapi --ext .yml --color",
     "lint:docs:openapi": "spectral lint docs/openapi/openapi.yml -F error",
-    "lint:docs:dev": "yarn lint:docs:yml && yarn lint:docs:openapi",
-    "lint:docs:public": "yarn build:docs && eslint public/openapi.yml --color --no-ignore && spectral lint public/openapi.yml -F error",
+    "lint:docs:dev": "npm lint:docs:yml && npm lint:docs:openapi",
+    "lint:docs:public": "npm build:docs && eslint public/openapi.yml --color --no-ignore && spectral lint public/openapi.yml -F error",
     "build:docs": "swagger-cli bundle docs/openapi/openapi.yml --outfile public/openapi.yml --type yaml"
     {%- endif %}
   },
