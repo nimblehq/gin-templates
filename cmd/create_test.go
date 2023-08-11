@@ -1012,4 +1012,56 @@ var _ = Describe("Create template", func() {
 			Expect(content).NotTo(ContainSubstring(expectedContent))
 		})
 	})
+
+	Context("given openapi add-on", func() {
+		It("contains docs/openapi folder", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("docs/openapi")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains OpenAPI instruction in README", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("README.md")
+
+			expectedContent := "Generate API documentation"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+	})
+
+	Context("given NO heroku add-on", func() {
+		It("does NOT contains docs/openapi folder", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("docs/openapi")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contains OpenAPI instruction in README", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("README.md")
+
+			expectedContent := "Generate API documentation"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+	})
 })

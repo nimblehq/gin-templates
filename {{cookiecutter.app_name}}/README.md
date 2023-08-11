@@ -50,6 +50,15 @@ Execute all unit tests:
 ```make
 make test
 ```
+{%- if cookiecutter.use_openapi == "yes" %}
+### API Documentation
+
+Generate API documentation:
+
+```make
+make doc/generate
+```
+{%- endif %}
 
 ### Migration
 
