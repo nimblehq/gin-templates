@@ -90,12 +90,27 @@ if '{{ cookiecutter._web_variant }}' == 'no':
     remove_files('lib/web')
 
     # Config files
-    remove_file('.eslintrc.json')
     remove_file('.npmrc')
-    remove_file('package.json')
     remove_file('snowpack.config.js')
     remove_file('postcss.config.js')
     remove_file('tsconfig.json')
+
+    # Remove if openapi is not selected
+    if '{{ cookiecutter.use_openapi }}' == 'no':
+        remove_file('.eslintrc.json')
+        remove_file('package.json')
+
+# Remove openapi if not seleted
+if '{{ cookiecutter.use_openapi }}' == 'no':
+    print_log('Removing openapi')
+
+    # docs folder
+    remove_files("docs")
+
+    # openapi related files
+    remove_file(".dockerignore")
+    remove_file(".eslintignore")
+    remove_file(".spectral.yaml")
 
 # Download the missing dependencies
 print_log('Downloading dependencies')

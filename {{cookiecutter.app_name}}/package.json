@@ -6,16 +6,28 @@
   "author": "NimbleHQ",
   "license": "MIT",
   "scripts": {
+    {% if cookiecutter._web_variant == "yes" %}
     "dev": "NODE_ENV=development MODE=development snowpack build --watch --no-minify --no-bundle",
     "build": "snowpack build",
-    "clean": "rm -rf static"
+    "clean": "rm -rf static",
+    {% endif %}
+    {% if cookiecutter.use_openapi == "yes" %}
+    "lint:docs:yml": "eslint docs/openapi --ext .yml --color",
+    "lint:docs:openapi": "spectral lint docs/openapi/openapi.yml -F error",
+    "lint:docs:dev": "yarn lint:docs:yml && yarn lint:docs:openapi",
+    "lint:docs:public": "yarn build:docs && eslint public/openapi.yml --color --no-ignore && spectral lint public/openapi.yml -F error",
+    "build:docs": "swagger-cli bundle docs/openapi/openapi.yml --outfile public/openapi.yml --type yaml",
+    {% endif %}
   },
   "devDependencies": {
+    {% if cookiecutter._web_variant == "yes" %}
     "@snowpack/plugin-postcss": "1.4.3",
     "@snowpack/plugin-sass": "1.4.0",
     "@types/node": "15.12.5",
-    "autoprefixer": "10.2.6",{% if cookiecutter._bootstrap_addon == "yes" %}
-    "bootstrap": "5.0.2",{% endif %}
+    "autoprefixer": "10.2.6",
+    {% if cookiecutter._bootstrap_addon == "yes" %}
+    "bootstrap": "5.0.2",
+    {% endif %}
     "eslint": "7.29.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "3.4.0",
@@ -23,5 +35,12 @@
     "prettier": "2.3.2",
     "snowpack": "3.7.1"{% if cookiecutter._tailwind_addon == "yes" %},
     "tailwindcss": "2.2.7"{% endif %}
+    {% endif %}
+    {% if cookiecutter.use_openapi == "yes" %}
+    "@apidevtools/swagger-cli": "4.0.4",
+    "@nimblehq/eslint-config-nimble": "2.1.1",
+    "@stoplight/spectral-cli": "6.8.0",
+    "eslint-plugin-yml": "1.8.0"
+    {% endif %}
   }
 }

@@ -10,3 +10,8 @@ deploy/**/terraform.tfstate
 deploy/**/terraform.tfstate.backup
 deploy/**/*.tfvars
 {%- endif %}
+
+{% if cookiecutter.use_openapi == "yes" %}
+## OpenAPI
+/public/openapi.yml
+{% endif %}

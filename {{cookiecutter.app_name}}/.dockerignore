@@ -1,7 +1,5 @@
 .github/
 .gitignore
-{%- if cookiecutter._web_variant == "yes" or cookiecutter.use_openapi == "yes" -%}
 node_modules/
-{% endif %}
 docker-compose.dev.yml
 README.md

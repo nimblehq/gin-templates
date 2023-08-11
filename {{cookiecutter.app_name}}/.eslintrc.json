@@ -1,3 +1,4 @@
+{% if cookiecutter._web_variant == "yes" %}
 {
   "rules": {},
   "env": {
@@ -18,3 +19,15 @@
     "SharedArrayBuffer": "readonly"
   }
 }
+{% endif %}
+{% if cookiecutter.use_openapi == "yes" %}
+{
+  "extends": [
+    "@nimblehq/eslint-config-nimble",
+    "plugin:yml/recommended"
+  ],
+  "globals": {
+    "I18n": true
+  }
+}
+{% endif %}
