@@ -1,6 +1,6 @@
 .github/
 .gitignore
-{%- if cookiecutter._web_variant == "yes" || cookiecutter.use_openapi == "yes" -%}
+{%- if cookiecutter._web_variant == "yes" ors cookiecutter.use_openapi == "yes" -%}
 node_modules/
 {% endif %}
 docker-compose.dev.yml
