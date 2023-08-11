@@ -8,6 +8,7 @@
 
   "_api_variant": "no",
   "_web_variant": "no",
+  "_only_web_variant": "no",
   "_bootstrap_addon": "no",
   "_tailwind_addon": "no"
 }
