@@ -1014,6 +1014,54 @@ var _ = Describe("Create template", func() {
 	})
 
 	Context("given openapi add-on", func() {
+		Context("given only Web variant", func() {
+			It("does NOT contains openapi requirement in .eslintrc.json", func() {
+				cookiecutter := tests.Cookiecutter{
+					AppName:    "test-gin-templates",
+					Variant:    tests.Web,
+					UseOpenAPI: tests.Yes,
+				}
+				cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+				content := tests.ReadFile(".eslintrc.json")
+
+				expectedContent := `plugin:yml/recommended`
+
+				Expect(content).NotTo(ContainSubstring(expectedContent))
+			})
+		})
+
+		Context("given only API variant", func() {
+			It("contains openapi requirement in .eslintrc.json", func() {
+				cookiecutter := tests.Cookiecutter{
+					AppName:    "test-gin-templates",
+					Variant:    tests.API,
+					UseOpenAPI: tests.Yes,
+				}
+				cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+				content := tests.ReadFile(".eslintrc.json")
+
+				expectedContent := `plugin:yml/recommended`
+
+				Expect(content).To(ContainSubstring(expectedContent))
+			})
+		})
+
+		Context("given both variant", func() {
+			It("contains openapi requirement in .eslintrc.json", func() {
+				cookiecutter := tests.Cookiecutter{
+					AppName:    "test-gin-templates",
+					Variant:    tests.Both,
+					UseOpenAPI: tests.Yes,
+				}
+				cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+				content := tests.ReadFile(".eslintrc.json")
+
+				expectedContent := `plugin:yml/recommended`
+
+				Expect(content).To(ContainSubstring(expectedContent))
+			})
+		})
+
 		It("contains docs/openapi folder", func() {
 			cookiecutter := tests.Cookiecutter{
 				AppName:    "test-gin-templates",
@@ -1025,7 +1073,7 @@ var _ = Describe("Create template", func() {
 			Expect(os.IsNotExist(err)).To(BeFalse())
 		})
 
-		It("contains OpenAPI instruction in README", func() {
+		It("contains openapi instruction in README", func() {
 			cookiecutter := tests.Cookiecutter{
 				AppName:    "test-gin-templates",
 				UseOpenAPI: tests.Yes,
@@ -1037,12 +1085,164 @@ var _ = Describe("Create template", func() {
 
 			Expect(content).To(ContainSubstring(expectedContent))
 		})
+
+		It("contains .dockerignore file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat(".dockerignore")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains .eslintignore file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat(".eslintignore")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains .github/workflows/lint_docs.yml file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat(".github/workflows/lint_docs.yml")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains openapi requirement in .gitignore", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile(".gitignore")
+
+			expectedContent := "/public/openapi.yml"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+
+		It("contains .spectral.yaml file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat(".spectral.yaml")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains openapi requirement in .tool-versions", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile(".tool-versions")
+
+			expectedContent := "nodejs 18.15.0"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+
+		It("contains openapi requirement in Makefile", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("Makefile")
+
+			expectedContent := "npm run build:docs"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+
+		It("contains openapi requirement in package.json", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("package.json")
+
+			expectedContent := `"build:docs": "swagger-cli bundle docs/openapi/openapi.yml --outfile public/openapi.yml --type yaml"`
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
 	})
 
 	Context("given NO openapi add-on", func() {
+		Context("given only Web variant", func() {
+			It("does NOT contains openapi requirement in .eslintrc.json", func() {
+				cookiecutter := tests.Cookiecutter{
+					AppName:    "test-gin-templates",
+					Variant:    tests.Web,
+					UseOpenAPI: tests.No,
+				}
+				cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+				content := tests.ReadFile(".eslintrc.json")
+
+				expectedContent := `plugin:yml/recommended`
+
+				Expect(content).NotTo(ContainSubstring(expectedContent))
+			})
+
+			It("does NOT contains openapi requirement in package.json", func() {
+				cookiecutter := tests.Cookiecutter{
+					AppName:    "test-gin-templates",
+					Variant:    tests.Web,
+					UseOpenAPI: tests.No,
+				}
+				cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+				content := tests.ReadFile("package.json")
+
+				expectedContent := `"build:docs": "swagger-cli bundle docs/openapi/openapi.yml --outfile public/openapi.yml --type yaml"`
+
+				Expect(content).NotTo(ContainSubstring(expectedContent))
+			})
+		})
+
+		Context("given only API variant", func() {
+			It("does NOT contains .eslintrc.json file", func() {
+				cookiecutter := tests.Cookiecutter{
+					AppName:    "test-gin-templates",
+					Variant:    tests.API,
+					UseOpenAPI: tests.No,
+				}
+				cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+				_, err := os.Stat(".eslintrc.json")
+
+				Expect(os.IsNotExist(err)).To(BeTrue())
+			})
+
+			It("does NOT contains package.json file", func() {
+				cookiecutter := tests.Cookiecutter{
+					AppName:    "test-gin-templates",
+					UseOpenAPI: tests.No,
+				}
+				cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+				_, err := os.Stat("package.json")
+
+				Expect(os.IsNotExist(err)).To(BeTrue())
+			})
+		})
+
 		It("does NOT contains docs/openapi folder", func() {
 			cookiecutter := tests.Cookiecutter{
 				AppName:    "test-gin-templates",
+				Variant:    tests.API,
 				UseOpenAPI: tests.No,
 			}
 			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
@@ -1060,6 +1260,78 @@ var _ = Describe("Create template", func() {
 			content := tests.ReadFile("README.md")
 
 			expectedContent := "Generate API documentation"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+
+		It("does NOT contains .dockerignore file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.No,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat(".dockerignore")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contains .github/workflows/lint_docs.yml file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.No,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat(".github/workflows/lint_docs.yml")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contains openapi requirement in .gitignore", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.No,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile(".gitignore")
+
+			expectedContent := "/public/openapi.yml"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+
+		It("does NOT contains .spectral.yaml file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.No,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat(".spectral.yaml")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contains openapi requirement in .tool-versions", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.No,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile(".tool-versions")
+
+			expectedContent := "nodejs 18.15.0"
+
+			Expect(content).NotTo(ContainSubstring(expectedContent))
+		})
+
+		It("does NOT contains openapi requirement in Makefile", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:    "test-gin-templates",
+				UseOpenAPI: tests.No,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("Makefile")
+
+			expectedContent := "npm run build:docs"
 
 			Expect(content).NotTo(ContainSubstring(expectedContent))
 		})
