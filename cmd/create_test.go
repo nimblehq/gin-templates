@@ -1039,11 +1039,11 @@ var _ = Describe("Create template", func() {
 		})
 	})
 
-	Context("given NO heroku add-on", func() {
+	Context("given NO openapi add-on", func() {
 		It("does NOT contains docs/openapi folder", func() {
 			cookiecutter := tests.Cookiecutter{
 				AppName:    "test-gin-templates",
-				UseOpenAPI: tests.Yes,
+				UseOpenAPI: tests.No,
 			}
 			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
 			_, err := os.Stat("docs/openapi")
@@ -1054,7 +1054,7 @@ var _ = Describe("Create template", func() {
 		It("does NOT contains OpenAPI instruction in README", func() {
 			cookiecutter := tests.Cookiecutter{
 				AppName:    "test-gin-templates",
-				UseOpenAPI: tests.Yes,
+				UseOpenAPI: tests.No,
 			}
 			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
 			content := tests.ReadFile("README.md")

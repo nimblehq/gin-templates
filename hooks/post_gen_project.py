@@ -117,9 +117,6 @@ if '{{ cookiecutter.use_openapi }}' == 'no':
 print_log('Downloading dependencies')
 subprocess.call(['go', 'mod', 'tidy'])
 
-if '{{ cookiecutter._web_variant }}' == 'yes' or '{{ cookiecutter.use_openapi }}' == 'yes':
-    subprocess.call(['npm', 'install'])
-
 # Format code
 print_log('Formating code')
 subprocess.call(['go', 'fmt', './...'])
