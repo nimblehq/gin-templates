@@ -4,7 +4,7 @@
   "css_addon": ["Bootstrap", "Tailwind", "None"],
   "use_logrus": ["yes", "no"],
   "use_heroku": ["yes", "no"],
-  "use_mock_server": ["yes","no"],
+  "use_mock_server": ["yes", "no"],
 
   "_api_variant": "no",
   "_web_variant": "no",
