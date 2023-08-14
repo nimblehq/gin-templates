@@ -101,6 +101,7 @@ if '{{ cookiecutter._api_variant }}' == 'no':
 
     # docs folder
     remove_files("docs")
+    remove_files("lib/api/docs")
 
     # openapi related files
     remove_file(".dockerignore")

@@ -11,4 +11,5 @@ require (
 	gorm.io/driver/postgres v1.0.8
 	gorm.io/gorm v1.20.12
 	{% if cookiecutter.use_logrus == "yes" -%}github.com/sirupsen/logrus v1.8.1{%- endif %}
+	{% if cookiecutter.use_openapi == "yes" -%}github.com/gin-gonic/contrib v0.0.0-20221130124618-7e01895a63f2{%- endif %}
 )
