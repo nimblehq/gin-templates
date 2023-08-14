@@ -13,8 +13,10 @@ import (
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
+	{% if cookiecutter.use_openapi == "yes" -%}r.Use(static.Serve("/", static.LocalFile("./public", true))){%- endif %}
+
 	apiv1router.ComebineRoutes(r)
-	{% if cookiecutter.use_openapi == "yes" -%}webrouter.ComebineRoutes(r){%- endif %}
+	{% if cookiecutter.use_openapi == "yes" -%}apidocsrouter.ComebineRoutes(r){%- endif %}
 	{% if cookiecutter._web_variant == "yes" %}webrouter.ComebineRoutes(r)
 	{% endif %}
 	return r
