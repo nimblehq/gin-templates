@@ -95,7 +95,7 @@ if '{{ cookiecutter._web_variant }}' == 'no':
     remove_file('postcss.config.js')
     remove_file('tsconfig.json')
 
-# Remove openapi if not seleted
+# Remove openapi if the project has web variant only
 if '{{ cookiecutter._api_variant }}' == 'no':
     print_log('Removing openapi')
 
