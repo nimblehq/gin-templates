@@ -663,19 +663,6 @@ var _ = Describe("Create template", func() {
 
 			Expect(content).To(ContainSubstring(expectedContent))
 		})
-
-		It("contains Node 14 in README.md", func() {
-			cookiecutter := tests.Cookiecutter{
-				AppName: "test-gin-templates",
-				Variant: tests.Web,
-			}
-			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
-			content := tests.ReadFile("README.md")
-
-			expectedContent := "[Node - 14](https://nodejs.org/en/)"
-
-			Expect(content).To(ContainSubstring(expectedContent))
-		})
 	})
 
 	Context("given NO Web variant", func() {
@@ -756,19 +743,6 @@ var _ = Describe("Create template", func() {
 			content := tests.ReadFile("bootstrap/router.go")
 
 			expectedContent := "webrouter \"github.com/nimblehq/test-gin-templates/lib/web/routers\""
-
-			Expect(content).NotTo(ContainSubstring(expectedContent))
-		})
-
-		It("does NOT contain Node 14 in README.md", func() {
-			cookiecutter := tests.Cookiecutter{
-				AppName: "test-gin-templates",
-				Variant: tests.API,
-			}
-			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
-			content := tests.ReadFile("README.md")
-
-			expectedContent := "[Node - 14](https://nodejs.org/en/)"
 
 			Expect(content).NotTo(ContainSubstring(expectedContent))
 		})
