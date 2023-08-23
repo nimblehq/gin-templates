@@ -95,13 +95,8 @@ if '{{ cookiecutter._web_variant }}' == 'no':
     remove_file('postcss.config.js')
     remove_file('tsconfig.json')
 
-    # Remove if openapi is not selected
-    if '{{ cookiecutter.use_openapi }}' == 'no':
-        remove_file('.eslintrc.json')
-        remove_file('package.json')
-
 # Remove openapi if not seleted
-if '{{ cookiecutter.use_openapi }}' == 'no':
+if '{{ cookiecutter._api_variant }}' == 'no':
     print_log('Removing openapi')
 
     # docs folder

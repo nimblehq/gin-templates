@@ -25,12 +25,11 @@ const (
 
 // Field and order MUST be the same as cookiecutter.json
 type Cookiecutter struct {
-	AppName    string
-	Variant    Variants
-	CssAddon   CssAddons
-	UseLogrus  Choices
-	UseHeroku  Choices
-	UseOpenAPI Choices
+	AppName   string
+	Variant   Variants
+	CssAddon  CssAddons
+	UseLogrus Choices
+	UseHeroku Choices
 }
 
 func (c *Cookiecutter) fillDefaultValue() {
@@ -44,10 +43,6 @@ func (c *Cookiecutter) fillDefaultValue() {
 
 	if c.UseHeroku != Yes && c.UseHeroku != No {
 		c.UseHeroku = No
-	}
-
-	if c.UseOpenAPI != Yes && c.UseOpenAPI != No {
-		c.UseOpenAPI = No
 	}
 
 	if c.CssAddon != Bootstrap && c.CssAddon != Tailwind && c.CssAddon != None {

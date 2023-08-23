@@ -9,9 +9,9 @@
     {%- if cookiecutter._web_variant == "yes" %}
     "dev": "NODE_ENV=development MODE=development snowpack build --watch --no-minify --no-bundle",
     "build": "snowpack build",
-    "clean": "rm -rf static"{%- if cookiecutter.use_openapi == "yes" %},{%- endif %}
+    "clean": "rm -rf static"{%- if cookiecutter._api_variant == "yes" %},{%- endif %}
     {%- endif %}
-    {%- if cookiecutter.use_openapi == "yes" %}
+    {%- if cookiecutter._api_variant == "yes" %}
     "lint:docs:yml": "eslint docs/openapi --ext .yml --color",
     "lint:docs:openapi": "spectral lint docs/openapi/openapi.yml -F error",
     "lint:docs:dev": "npm lint:docs:yml && npm lint:docs:openapi",
@@ -32,9 +32,9 @@
     "postcss": "8.3.5",
     "prettier": "2.3.2",
     "snowpack": "3.7.1"{% if cookiecutter._tailwind_addon == "yes" %},
-    "tailwindcss": "2.2.7"{% endif %}{%- if cookiecutter.use_openapi == "yes" %},{%- endif %}
+    "tailwindcss": "2.2.7"{% endif %}{%- if cookiecutter._api_variant == "yes" %},{%- endif %}
     {%- endif %}
-    {%- if cookiecutter.use_openapi == "yes" %}
+    {%- if cookiecutter._api_variant == "yes" %}
     "@apidevtools/swagger-cli": "4.0.4",
     "@nimblehq/eslint-config-nimble": "2.1.1",
     "@stoplight/spectral-cli": "6.8.0",

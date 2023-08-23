@@ -11,7 +11,7 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:prettier/recommended"{% if cookiecutter.use_openapi == "yes" %},
+    "plugin:prettier/recommended"{% if cookiecutter._api_variant == "yes" %},
     "@nimblehq/eslint-config-nimble",
     "plugin:yml/recommended"{% endif %}
   ],
@@ -19,7 +19,7 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   }
-}{% endif %}{% if cookiecutter._both_variant == "no" and cookiecutter.use_openapi == "yes" %}{
+}{% endif %}{% if cookiecutter._api_variant == "yes" and cookiecutter._web_variant == "no" %}{
   "extends": [
     "@nimblehq/eslint-config-nimble",
     "plugin:yml/recommended"

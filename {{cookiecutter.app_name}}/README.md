@@ -50,7 +50,7 @@ Execute all unit tests:
 ```make
 make test
 ```
-{%- if cookiecutter.use_openapi == "yes" %}
+{%- if cookiecutter._api_variant == "yes" %}
 ### API Documentation
 
 Generate API documentation:

@@ -4,11 +4,9 @@
   "css_addon": ["Bootstrap", "Tailwind", "None"],
   "use_logrus": ["yes", "no"],
   "use_heroku": ["yes", "no"],
-  "use_openapi": ["yes", "no"],
 
   "_api_variant": "no",
   "_web_variant": "no",
-  "_both_variant": "no",
   "_bootstrap_addon": "no",
   "_tailwind_addon": "no"
 }

@@ -1,5 +1,4 @@
-{%- if cookiecutter._web_variant == "yes" or cookiecutter.use_openapi == "yes" %}/node_modules
-{%- endif %}
+/node_modules
 tmp/
 coverage/
 .env
@@ -12,7 +11,7 @@ deploy/**/terraform.tfstate.backup
 deploy/**/*.tfvars
 {%- endif %}
 
-{%- if cookiecutter.use_openapi == "yes" %}
+{%- if cookiecutter._api_variant == "yes" %}
 ## OpenAPI
 /public/openapi.yml
 {%- endif %}
