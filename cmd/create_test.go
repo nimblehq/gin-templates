@@ -1137,7 +1137,7 @@ var _ = Describe("Create template", func() {
 			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
 			content := tests.ReadFile("bootstrap/router.go")
 
-			expectedContent := "apidocsrouter.ComebineRoutes(r)"
+			expectedContent := "apidocsrouter.CombineRoutes(r)"
 
 			Expect(content).To(ContainSubstring(expectedContent))
 		})

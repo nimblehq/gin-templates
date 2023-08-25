@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func ComebineRoutes(engine *gin.Engine) {
+func CombineRoutes(engine *gin.Engine) {
 	docs := engine.Group("/api/docs")
 
 	engine.LoadHTMLFiles("lib/api/docs/views/openapi/show.html")

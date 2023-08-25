@@ -15,9 +15,9 @@ func SetupRouter() *gin.Engine {
 
 	{% if cookiecutter._api_variant == "yes" -%}r.Use(static.Serve("/", static.LocalFile("./public", true))){%- endif %}
 
-	apiv1router.ComebineRoutes(r)
-	{% if cookiecutter._api_variant == "yes" -%}apidocsrouter.ComebineRoutes(r){%- endif %}
-	{% if cookiecutter._web_variant == "yes" %}webrouter.ComebineRoutes(r)
+	apiv1router.CombineRoutes(r)
+	{% if cookiecutter._api_variant == "yes" -%}apidocsrouter.CombineRoutes(r){%- endif %}
+	{% if cookiecutter._web_variant == "yes" %}webrouter.CombineRoutes(r)
 	{% endif %}
 	return r
 }
