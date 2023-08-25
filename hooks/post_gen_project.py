@@ -90,12 +90,23 @@ if '{{ cookiecutter._web_variant }}' == 'no':
     remove_files('lib/web')
 
     # Config files
-    remove_file('.eslintrc.json')
     remove_file('.npmrc')
-    remove_file('package.json')
     remove_file('snowpack.config.js')
     remove_file('postcss.config.js')
     remove_file('tsconfig.json')
+
+# Remove openapi if the project has web variant only
+if '{{ cookiecutter._api_variant }}' == 'no':
+    print_log('Removing openapi')
+
+    # docs folder
+    remove_files("docs")
+
+    # openapi related files
+    remove_file(".dockerignore")
+    remove_file(".eslintignore")
+    remove_file(".spectral.yaml")
+    remove_file(".github/workflows/lint_docs.yml")
 
 # Download the missing dependencies
 print_log('Downloading dependencies')
