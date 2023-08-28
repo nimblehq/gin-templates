@@ -109,6 +109,15 @@ if '{{ cookiecutter._api_variant }}' == 'no':
     remove_file(".spectral.yaml")
     remove_file(".github/workflows/lint_docs.yml")
 
+# Remove mock_server if not seleted
+if '{{ cookiecutter.use_mock_server }}' == 'no':
+    print_log('Removing mock_server')
+
+    # mock_server related files
+    remove_file("Dockerfile.mock")
+    remove_file("fly.toml")
+    remove_file(".github/workflows/deploy_mock_server.yml")
+
 # Download the missing dependencies
 print_log('Downloading dependencies')
 subprocess.call(['go', 'mod', 'tidy'])

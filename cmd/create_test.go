@@ -1142,4 +1142,74 @@ var _ = Describe("Create template", func() {
 			Expect(content).To(ContainSubstring(expectedContent))
 		})
 	})
+
+	Context("given mock_server add-on", func() {
+		It("contains deploy_mock_server.yml file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:       "test-gin-templates",
+				UseMockServer: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat(".github/workflows/deploy_mock_server.yml")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains Dockerfile.mock file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:       "test-gin-templates",
+				UseMockServer: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("Dockerfile.mock")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains fly.toml file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:       "test-gin-templates",
+				UseMockServer: tests.Yes,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("fly.toml")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+	})
+
+	Context("given NO mock_server add-on", func() {
+		It("does NOT contains deploy_mock_server.yml file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:       "test-gin-templates",
+				UseMockServer: tests.No,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat(".github/workflows/deploy_mock_server.yml")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contains Dockerfile.mock file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:       "test-gin-templates",
+				UseMockServer: tests.No,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("Dockerfile.mock")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+
+		It("does NOT contains fly.toml file", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName:       "test-gin-templates",
+				UseMockServer: tests.No,
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("fly.toml")
+
+			Expect(os.IsNotExist(err)).To(BeTrue())
+		})
+	})
 })

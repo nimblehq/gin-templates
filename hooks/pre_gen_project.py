@@ -28,4 +28,13 @@ Only project with web:
         {{ cookiecutter.update({ '_tailwind_addon': 'yes' }) }}
     {% endif %}
 {% endif %}
+
+-----------
+Mock Server
+cookiecutter.use_mock_server
+-----------
+Only project with openapi:
+{% if cookiecutter._api_variant == 'no' %}
+    {{ cookiecutter.update({ 'use_mock_server': 'no' }) }}
+{% endif %}
 '''
