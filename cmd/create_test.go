@@ -1107,5 +1107,39 @@ var _ = Describe("Create template", func() {
 
 			Expect(content).To(ContainSubstring(expectedContent))
 		})
+
+		It("contains lib/api/docs folder", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			_, err := os.Stat("lib/api/docs")
+
+			Expect(os.IsNotExist(err)).To(BeFalse())
+		})
+
+		It("contains openapi requirement in go.mod", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("go.mod")
+
+			expectedContent := "github.com/gin-gonic/contrib"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
+
+		It("contains openapi requirement in router.go", func() {
+			cookiecutter := tests.Cookiecutter{
+				AppName: "test-gin-templates",
+			}
+			cookiecutter.CreateProjectFromGinTemplate(currentTemplatePath)
+			content := tests.ReadFile("bootstrap/router.go")
+
+			expectedContent := "apidocsrouter.CombineRoutes(r)"
+
+			Expect(content).To(ContainSubstring(expectedContent))
+		})
 	})
 })
