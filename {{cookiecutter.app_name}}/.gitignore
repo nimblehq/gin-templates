@@ -1,5 +1,6 @@
-{% if cookiecutter._web_variant == "yes" %}/node_modules
-{% endif %}tmp/
+/node_modules
+tmp/
+coverage/
 .env
 
 {%- if cookiecutter.use_heroku == "yes" %}
@@ -8,4 +9,9 @@ deploy/**/.terraform/
 deploy/**/terraform.tfstate
 deploy/**/terraform.tfstate.backup
 deploy/**/*.tfvars
+{%- endif %}
+
+{%- if cookiecutter._api_variant == "yes" %}
+## OpenAPI
+/public/openapi.yml
 {%- endif %}

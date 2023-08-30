@@ -10,7 +10,7 @@ import (
 	eztemplate "github.com/michelloworld/ez-gin-template"
 )
 
-func ComebineRoutes(engine *gin.Engine) {
+func CombineRoutes(engine *gin.Engine) {
 	// Register HTML renderer
 	htmlRender := eztemplate.New()
 	htmlRender.Debug = gin.IsDebugging()

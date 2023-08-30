@@ -9,8 +9,7 @@
 ### Prerequisites
 
 - [Go - 1.20](https://golang.org/doc/go1.20) or newer
-
-{% if cookiecutter._web_variant == "yes" %}- [Node - 14](https://nodejs.org/en/){% endif %}
+- [Node - 18](https://nodejs.org/en/)
 
 ### Development
 
@@ -50,6 +49,15 @@ Execute all unit tests:
 ```make
 make test
 ```
+{%- if cookiecutter._api_variant == "yes" %}
+### API Documentation
+
+Generate API documentation:
+
+```make
+make doc/generate
+```
+{%- endif %}
 
 ### Migration
 
