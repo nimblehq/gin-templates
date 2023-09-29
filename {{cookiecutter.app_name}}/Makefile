@@ -13,7 +13,11 @@ env-teardown:
 
 db/migrate:
 	make wait-for-postgres
-	goose -dir database/migrations -table "migration_versions" postgres "$(DATABASE_URL)" up
+ifneq ("$(wildcard $(database/migrations/.keep))","")
+  goose -dir database/migrations -table "migration_versions" postgres "$(DATABASE_URL)" up
+else
+	$(info NO migration files to run)
+endif
 
 db/rollback:
 	make wait-for-postgres
@@ -39,7 +43,7 @@ dev:
 
 install-dependencies:
 	go install github.com/cosmtrek/air@v1.43.0
-	go install github.com/pressly/goose/v3/cmd/goose@v3.9.0
+	go install github.com/pressly/goose/v3/cmd/goose@v3.15.0
 	go install github.com/ddollar/forego@latest
 	go mod tidy
 	npm install

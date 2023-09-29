@@ -19,6 +19,8 @@ import (
 
 var database *gorm.DB
 
+const databaseDir = "database/migrations"
+
 func InitDatabase(databaseURL string) {
 	db, err := gorm.Open(postgres.Open(databaseURL), &gorm.Config{})
 	if err != nil {
@@ -38,12 +40,25 @@ func migrateDB(db *gorm.DB) {
 		log.Fatalf("Failed to convert gormDB to sqlDB: %v", err)
 	}
 
-	err = goose.Up(sqlDB, "database/migrations", goose.WithAllowMissing())
+	if migrationFileExist() {
+		err = goose.Up(sqlDB, databaseDir, goose.WithAllowMissing())
+		if err != nil {
+			log.Fatalf("Failed to migrate database: %v", err)
+		}
+
+		log.Println("Migrated database successfully.")
+	} else {
+		log.Println("NO migration files")
+	}
+}
+
+func migrationFileExist() bool {
+	files, err := os.ReadDir(databaseDir)
 	if err != nil {
-		log.Fatalf("Failed to migrate database: %v", err)
+		log.Fatalf("Missing migration directory: %v", err)
 	}
 
-	log.Println("Migrated database successfully.")
+	return len(files) > 0 && files[0].Name() != ".keep"
 }
 
 func GetDB() *gorm.DB {
