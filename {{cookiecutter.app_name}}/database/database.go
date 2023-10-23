@@ -2,6 +2,7 @@ package database
 
 import (
 	"fmt"
+	"os"
 	{% if cookiecutter.use_logrus == "no" %}"log"
 	{% endif %}
 
@@ -13,6 +14,7 @@ import (
 	"github.com/pressly/goose/v3"
 	"github.com/spf13/viper"
 	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
