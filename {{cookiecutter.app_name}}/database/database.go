@@ -43,10 +43,10 @@ func migrateDB(db *gorm.DB) {
 	if migrationFileExist() {
 		err = goose.Up(sqlDB, databaseDir, goose.WithAllowMissing())
 		if err != nil {
-			log.Fatalf("Failed to migrate database: %v", err)
+			log.Fatalf("Failed to migrate the database: %v", err)
 		}
 
-		log.Println("Migrated database successfully.")
+		log.Println("Database migrated successfully.")
 	} else {
 		log.Println("NO migration files")
 	}
