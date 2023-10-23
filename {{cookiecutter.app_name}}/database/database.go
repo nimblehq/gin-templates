@@ -2,6 +2,7 @@ package database
 
 import (
 	"fmt"
+	"os"
 	{% if cookiecutter.use_logrus == "no" %}"log"
 	{% endif %}
 
@@ -13,11 +14,14 @@ import (
 	"github.com/pressly/goose/v3"
 	"github.com/spf13/viper"
 	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 var database *gorm.DB
+
+const databaseDir = "database/migrations"
 
 func InitDatabase(databaseURL string) {
 	db, err := gorm.Open(postgres.Open(databaseURL), &gorm.Config{})
@@ -38,12 +42,25 @@ func migrateDB(db *gorm.DB) {
 		log.Fatalf("Failed to convert gormDB to sqlDB: %v", err)
 	}
 
-	err = goose.Up(sqlDB, "database/migrations", goose.WithAllowMissing())
+	if migrationFileExist() {
+		err = goose.Up(sqlDB, databaseDir, goose.WithAllowMissing())
+		if err != nil {
+			log.Fatalf("Failed to migrate the database: %v", err)
+		}
+
+		log.Println("Database migrated successfully.")
+	} else {
+		log.Println("NO migration files")
+	}
+}
+
+func migrationFileExist() bool {
+	files, err := os.ReadDir(databaseDir)
 	if err != nil {
-		log.Fatalf("Failed to migrate database: %v", err)
+		log.Fatalf("Missing migration directory: %v", err)
 	}
 
-	log.Println("Migrated database successfully.")
+	return len(files) > 0 && files[0].Name() != ".keep"
 }
 
 func GetDB() *gorm.DB {
