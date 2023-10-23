@@ -13,10 +13,10 @@ env-teardown:
 
 db/migrate:
 	make wait-for-postgres
-ifneq ("$(wildcard $(database/migrations/.keep))","")
-  goose -dir database/migrations -table "migration_versions" postgres "$(DATABASE_URL)" up
+ifeq ("$(wildcard $(database/migrations/.keep))","")
+  $(info NO migration files to run)
 else
-	$(info NO migration files to run)
+	goose -dir database/migrations -table "migration_versions" postgres "$(DATABASE_URL)" up
 endif
 
 db/rollback:
